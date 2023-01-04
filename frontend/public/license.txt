@@ -1,0 +1,11 @@
+Model Information:
+* title:	Nike Dunk Hawaii - 6k triangles
+* source:	https://sketchfab.com/3d-models/nike-dunk-hawaii-6k-triangles-5a631f5439764fa18cf465f4cf19338f
+* author:	ryanbair (https://sketchfab.com/ryanbair)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Nike Dunk Hawaii - 6k triangles" (https://sketchfab.com/3d-models/nike-dunk-hawaii-6k-triangles-5a631f5439764fa18cf465f4cf19338f) by ryanbair (https://sketchfab.com/ryanbair) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
