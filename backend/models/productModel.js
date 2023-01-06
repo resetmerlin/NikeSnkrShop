@@ -45,7 +45,6 @@ const CyberProductSchema = mongoose.Schema(
     rating: {
       type: Number,
       required: true,
-      default: 0,
     },
     numReviews: {
       type: Number,
@@ -68,7 +67,12 @@ const CyberProductSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    colors: {
+      type: String,
+      required: true,
+    },
   },
+
   {
     timestamps: true,
   }

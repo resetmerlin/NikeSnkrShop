@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Syncopate&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+NP+Hmong&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,10 +21,10 @@ Header components
 */
 .title {
   font-size: 6rem;
-  margin-left: 3.3rem;
+  margin-left: 3rem;
   font-weight: 400;
   padding: 3rem 0 3rem 0;
-  font-family: "Noto Serif NP Hmong", serif;
+  font-family: "Dosis", sans-serif;
 }
 .header {
   display: flex;
@@ -137,7 +139,7 @@ Header components
   padding: 0 35rem;
   width: 100%;
   display: block;
-  font-family: "Noto Serif NP Hmong", serif;
+  font-family: "Dosis", sans-serif;
   // background-image:url("../src/HD-wallpaper-cyberpunk-2077-yellow-background.jpg") ;
   // background-position: center;
   //         background-size: cover;
@@ -460,6 +462,93 @@ select {
       &:hover {
         transform: translateY(-3px);
       }
+    }
+  }
+}
+
+.Category-sort-box {
+  display: flex;
+  width: 40rem;
+  height: 3rem;
+  flex-direction: column;
+  font-size: 2.4rem;
+  position: relative;
+  z-index: 1000;
+
+  right: 0;
+  left: 79%;
+  select {
+    padding: 0.6rem 4rem 0.5rem 0.8rem;
+  }
+  &__list {
+    position: absolute;
+
+    top: 18%;
+    left: 9%;
+
+    option {
+      text-decoration: none;
+      width: 20rem;
+      z-index: 1000;
+      font-size: 2rem;
+      list-style: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.Category-sort {
+  position: absolute;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-size: 2.4rem;
+  display: flex;
+  width: 26rem;
+  height: 5rem;
+  flex-direction: column;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+.Category-side {
+  width: 30rem;
+  height: 50rem;
+  background-color: chartreuse;
+  position: fixed;
+  top: 22%;
+  left: 1%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  &__colors {
+    width: 100%;
+    height: 20rem;
+    font-size: 3rem;
+    text-align: center;
+    align-items: center;
+    &__wrap {
+      display: flex;
+      flex-wrap: wrap;
+      height: 5rem;
+      div {
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        height: 5rem;
+      }
+    }
+    &__color {
+      margin-right: 1rem;
+      width: 100%;
+      background-color: pink;
     }
   }
 }

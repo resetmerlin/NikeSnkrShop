@@ -10,10 +10,14 @@ import {
 export const cyberProductReducers = (state = { cyberProducts: [] }, action) => {
   switch (action.type) {
     case CYBER_PRODUCT_LIST_REQUEST:
-      return { loading: true, cyberProducts: [] };
+      return { loading: true, ...state };
 
     case CYBER_PRODUCT_LIST_SUCCESS:
-      return { loading: false, cyberProducts: action.payload };
+      return {
+        loading: false,
+        cyberProducts: action.payload,
+      };
+
     case CYBER_PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
 

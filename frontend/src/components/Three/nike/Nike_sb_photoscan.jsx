@@ -13,18 +13,38 @@ import { useGLTF } from "@react-three/drei";
 export function NikeSb(props) {
   const { nodes, materials } = useGLTF("/nike_sb_photoscan.glb");
   return (
-    <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={0.03}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <mesh
-            geometry={nodes.prop_nike_a_01__0.geometry}
-            material={materials["Scene_-_Root"]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={0.03}
-          />
+    <>
+      <fog attach="fog" args={["black", 0, 40]} />
+      <ambientLight intensity={0.4} />
+      <directionalLight
+        position={[-8, 16, -8]}
+        intensity={0.3}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        shadow-camera-far={50}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
+      ></directionalLight>
+      <pointLight position={[0, 50, 0]} intensity={0.9} />
+      <group {...props} dispose={null}>
+        <group
+          rotation={[-Math.PI / 2, 0.5, 0]}
+          scale={0.041}
+          position={[-0.7, -0.7, -0.3]}
+        >
+          <group rotation={[Math.PI / 2, 0, 0]}>
+            <mesh
+              geometry={nodes.prop_nike_a_01__0.geometry}
+              material={materials["Scene_-_Root"]}
+              rotation={[-1.8, -0.2, 2.1]}
+              scale={0.5}
+            />
+          </group>
         </group>
       </group>
-    </group>
+    </>
   );
 }
 
