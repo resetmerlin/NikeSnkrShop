@@ -11,7 +11,8 @@ const categorySortOptions = [
   "Price high to low",
   "Order by rating",
 ];
-
+import { Duplicated } from "../components/functions/ArrayFunction";
+import { deleteArrayClicked } from "../components/functions/ArrayFunction";
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
@@ -24,49 +25,84 @@ const HomeScreen = () => {
 
   const productColors = [];
   const individualColor = [];
-  const arrayColor = [];
+  const colorPlainDoubleArray = [];
 
   for (const key in cyberProducts) {
     productColors.push(cyberProducts[key].colors);
 
     individualColor.push(productColors[key]);
 
-    arrayColor.push(individualColor[key].split("/"));
+    colorPlainDoubleArray.push(individualColor[key].split("/"));
   }
-  console.log(arrayColor[0]);
-  // for (let key = 0; key < cyberProducts.length; key++) {
-  //   productColors.push(cyberProducts[cyberProducts[key].threeValue].colors);
+  let multipleColors = [];
+  let productOnlyWithColor = [];
+  let colorChoseLength = [];
+  let copyOfCurrentColol = [];
 
-  //   individualColor.push(productColors[key]);
+  function handleNotChangeCheck(colorThatNotChange) {
+    console.log(colorThatNotChange);
+    return colorThatNotChange;
+  }
+  function hndleColorCheckboxChange(colorThatChose) {
+    console.log(colorThatChose);
+    colorChoseLength.push(colorThatChose.length);
 
-  //   arrayColor.push(individualColor[key].split("/"));
-  // }
-  const multipleColors = [];
-  function hndleColorCheckboxChange(checkboxColor) {
-    console.log(checkboxColor);
+    for (let f = 0; f < colorThatChose.length; f++) {
+      for (let j = 0; j < colorPlainDoubleArray.length; j++) {
+        if (hasCommonElement([colorThatChose[f]], colorPlainDoubleArray[j])) {
+          console.log(`it found on ${j}`);
 
-    // for (const key in arrayColor) {
-    //   for (let i = 0; i < arrayColor[key].length; i++) {
-    //     if (arrayColor[key][i] === checkboxColor[0]) {
-    //       multipleColors.push(`${key},${checkboxColor[0]}`);
-    //       console.log(multipleColors);
-    //     } else if (arrayColor[key][i] !== checkboxColor[0]) {
-    //       // console.log([arrayColor[key][i]]);
-    //       // console.log(checkboxColor[i]);
-    //       console.log(false);
-    //     }
-    //   }
-    // }
-    // Example
-    for (let j = 0; j < arrayColor.length; j++) {
-      console.log(hasCommonElement(checkboxColor, arrayColor[j]));
-      if (hasCommonElement(checkboxColor, arrayColor[j])) {
-        console.log(`it found on ${arrayColor[j]}`);
-      } else {
-        console.log(`it doesn't found on ${arrayColor[j]}`);
+          let rearrangedColor = colorPlainDoubleArray
+            .map((obj) => obj)
+            .sort((a, b) =>
+              a === colorPlainDoubleArray[j]
+                ? -1
+                : b === colorPlainDoubleArray[j]
+                ? 1
+                : 0
+            );
+
+          productOnlyWithColor = colorPlainDoubleArray.filter((array) =>
+            array.includes(colorThatChose[f])
+          );
+
+          productOnlyWithColor.push(productOnlyWithColor.flat(1));
+          console.log(productOnlyWithColor);
+
+          if (multipleColors.length - 1 === multipleColors.length - 2) {
+            multipleColors = multipleColors.filter(
+              (color) => color !== productOnlyWithColor[f]
+            );
+            console.log(multipleColors);
+          }
+
+          function isDuplicated(string) {
+            return string.filter((s) => s === colorThatChose[f - 1]).length > 1;
+          }
+          if (isDuplicated(multipleColors)) {
+            multipleColors = multipleColors
+              .flat(1)
+              .filter((color) => color !== colorThatChose[f - 1]);
+            console.log(multipleColors);
+          }
+        } else {
+          if (colorChoseLength.length - 1 > colorThatChose.length) {
+            // let latestColor = handleNotChangeCheck();
+
+            multipleColors = multipleColors.filter(
+              (color) => color !== colorThatChose
+            );
+            console.log(multipleColors);
+          } else {
+            console.log(
+              `the ${colorThatChose[f]} doesn't found on ${j}index of colorPlainDoubleArray`
+            );
+          }
+        }
       }
     }
   }
+
   function hasCommonElement(arr1, arr2) {
     return arr1.filter((item) => arr2.includes(item)).length > 0;
   }
@@ -104,8 +140,9 @@ const HomeScreen = () => {
         </select>
       </form>
       <SideCategory
-        colors={arrayColor}
+        colors={colorPlainDoubleArray}
         onColorCheckboxChange={hndleColorCheckboxChange}
+        onColorCheckboxUnChange={handleNotChangeCheck}
       ></SideCategory>
       {loading ? (
         <div className="row">

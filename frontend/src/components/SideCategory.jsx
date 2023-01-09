@@ -1,7 +1,12 @@
 import React from "react";
 
-const SideCategory = ({ colors, onColorCheckboxChange }) => {
+const SideCategory = ({
+  colors,
+  onColorCheckboxChange,
+  onColorCheckboxUnChange,
+}) => {
   let checkboxColor = [];
+  let beforeValueCheck = [];
   const checkboxHandler = (event) => {
     if (event.target.checked) {
       checkboxColor.push(event.currentTarget.id);
@@ -22,9 +27,12 @@ const SideCategory = ({ colors, onColorCheckboxChange }) => {
         }
       }
     } else {
+      beforeValueCheck = checkboxColor.map((x) => x);
+
       checkboxColor = checkboxColor.filter((id) => id !== event.target.id);
     }
     onColorCheckboxChange(checkboxColor);
+    onColorCheckboxUnChange(beforeValueCheck);
   };
 
   function isDuplicated(string) {
