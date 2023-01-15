@@ -7,8 +7,6 @@ import ProductScreen from "./screens/ProductScreen";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CartScreen from "./screens/CartScreen";
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <BrowserRouter>
       <Header />

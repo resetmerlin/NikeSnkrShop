@@ -1,12 +1,8 @@
 import React from "react";
 
-const SideCategory = ({
-  colors,
-  onColorCheckboxChange,
-  onColorCheckboxUnChange,
-}) => {
+const SideCategory = ({ colors, onColorCheckboxChange }) => {
   let checkboxColor = [];
-  let beforeValueCheck = [];
+
   const checkboxHandler = (event) => {
     if (event.target.checked) {
       checkboxColor.push(event.currentTarget.id);
@@ -27,12 +23,9 @@ const SideCategory = ({
         }
       }
     } else {
-      beforeValueCheck = checkboxColor.map((x) => x);
-
       checkboxColor = checkboxColor.filter((id) => id !== event.target.id);
     }
     onColorCheckboxChange(checkboxColor);
-    onColorCheckboxUnChange(beforeValueCheck);
   };
 
   function isDuplicated(string) {
@@ -43,21 +36,17 @@ const SideCategory = ({
       {" "}
       <div className="Category-side">
         <div className="Category-side__colors">
-          <span>Colors</span>
+          <input type="checkbox" id="color-toggle" />
+          <label htmlFor="color-toggle" className="color-toggle-button">
+            <span>Colors</span>
+            <i class="bx bx-plus"></i>
+            <i class="bx bx-minus"></i>
+          </label>
+
           <div className="Category-side__colors__wrap">
             {colors.map((colorArray) =>
               colorArray.map((color) => (
                 <>
-                  <label htmlFor={color} className="color-button">
-                    <div
-                      key={checkboxColor}
-                      style={{
-                        background: `${color}`,
-                        width: "5rem",
-                      }}
-                    ></div>
-                  </label>
-
                   <input
                     key={color}
                     type="checkbox"
@@ -65,6 +54,14 @@ const SideCategory = ({
                     id={color}
                     onClick={checkboxHandler}
                   />
+                  <label htmlFor={color} className="color-button">
+                    <div
+                      key={checkboxColor}
+                      style={{
+                        background: `${color}`,
+                      }}
+                    ></div>
+                  </label>
                 </>
               ))
             )}

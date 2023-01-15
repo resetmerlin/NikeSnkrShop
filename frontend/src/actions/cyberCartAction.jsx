@@ -4,11 +4,12 @@ import {
   CYBER_CART_SAVE_SHIPPING_ADDRESS,
   CYBER_CART_SAVE_PAYMENT_METHOD,
 } from "../constants/cartConstants";
+
 import axios from "axios";
 //action creator
 //Redux thunk
 export const addItemToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/cyberProducts${id}`);
+  const { data } = await axios.get(`/api/cyberProducts/${id}`);
 
   dispatch({
     type: CYBER_CART_ADD_ITEM,
@@ -20,6 +21,17 @@ export const addItemToCart = (id, qty) => async (dispatch, getState) => {
       countInStock: data.countInStock,
       qty,
     },
+  });
+  localStorage.setItem(
+    "cyberCartItems",
+    JSON.stringify(getState().cyberCart.cyberCartItems)
+  );
+};
+
+export const removeCartItemAction = (id) => async (dispatch, getState) => {
+  dispatch({
+    type: CYBER_CART_REMOVE_ITEM,
+    payload: id,
   });
   localStorage.setItem(
     "cyberCartItems",

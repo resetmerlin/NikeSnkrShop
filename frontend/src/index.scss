@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Syncopate&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+NP+Hmong&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Heebo&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -23,8 +23,8 @@ Header components
   font-size: 6rem;
   margin-left: 3rem;
   font-weight: 400;
-  padding: 3rem 0 3rem 0;
-  font-family: "Dosis", sans-serif;
+  padding: 7rem 0 7rem 0;
+  font-family: "Heebo", sans-serif;
 }
 .header {
   display: flex;
@@ -139,7 +139,7 @@ Header components
   padding: 0 35rem;
   width: 100%;
   display: block;
-  font-family: "Dosis", sans-serif;
+  font-family: "Heebo", sans-serif;
   // background-image:url("../src/HD-wallpaper-cyberpunk-2077-yellow-background.jpg") ;
   // background-position: center;
   //         background-size: cover;
@@ -265,6 +265,10 @@ footer {
   font-size: 8rem !important;
 }
 
+.font-size-s {
+  font-size: 2.5rem !important;
+}
+
 .items-center {
   justify-content: center;
   text-align: start;
@@ -288,6 +292,7 @@ footer {
   background-color: black;
   color: white;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .margin-top-s {
@@ -419,50 +424,71 @@ select {
 .margin-s {
   margin: 3rem 0 3rem 0;
 }
-.width-half {
-  width: 50%;
+
+.row__cart {
+  width: 65%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.541);
 }
-.row {
-  .row__list-group-item {
-    display: flex;
-    height: 24rem;
-    width: 100%;
-    justify-content: space-between;
-    text-align: center;
+.row__list-group-item {
+  display: flex;
+  height: 12rem;
+  width: 100%;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.list-item-image {
+  width: 8%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.list-item-title {
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  color: black;
+  text-align: center;
+  align-items: center;
+  text-align: center;
+  width: 13%;
+  height: 100%;
+}
+.list-item-price {
+  font-size: 2.3rem;
+  font-weight: 600;
+  width: 10%;
+
+  color: black;
+}
+.list-item-qty {
+  font-size: 2.3rem;
+  color: black;
+
+  width: 13%;
+}
+.list-item-delete {
+  width: 13%;
+  display: flex;
+  justify-content: center;
+  font-size: 8rem;
+  align-items: center;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-3px);
+  }
+  button {
+    width: 3rem;
     align-items: center;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-
-    .list-item-image {
-      width: 18rem;
-      height: 100%;
-      background-color: red;
-    }
-
-    .list-item-title {
-      font-size: 2rem;
-      color: black;
-      text-align: center;
-      align-items: center;
-    }
-    .list-item-price {
-      font-size: 3rem;
-      border-bottom: 1px solid black;
-      color: black;
-    }
-    .list-item-qty {
-      font-size: 2.3rem;
-      color: black;
-    }
-    .list-item-delete {
-      font-size: 3.5rem;
-      transition: all 0.3s ease;
-      &:hover {
-        transform: translateY(-3px);
-      }
-    }
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
   }
 }
 
@@ -521,9 +547,8 @@ select {
 .Category-side {
   width: 30rem;
   height: 50rem;
-  background-color: chartreuse;
   position: fixed;
-  top: 22%;
+  top: 16%;
   left: 1%;
   display: flex;
   flex-direction: column;
@@ -531,18 +556,67 @@ select {
   align-items: center;
   &__colors {
     width: 100%;
-    height: 20rem;
+    height: 40rem;
+
     font-size: 3rem;
     text-align: center;
     align-items: center;
+    #color-toggle {
+      opacity: 0;
+    }
+
+    #color-toggle:checked ~ &__wrap {
+      opacity: 1;
+    }
+
+    #color-toggle:checked ~ .color-toggle-button .bx-plus {
+      opacity: 0;
+    }
+    #color-toggle:checked ~ .color-toggle-button .bx-minus {
+      opacity: 1;
+    }
+
+    .color-toggle-button {
+      font-size: 4rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: start;
+      i {
+        opacity: 1;
+        font-weight: 400;
+        margin-top: 0.2rem;
+        font-size: 3rem;
+      }
+      .bx-minus {
+        position: absolute;
+        top: 9%;
+        left: 24%;
+        opacity: 0;
+        z-index: 10;
+      }
+    }
     &__wrap {
+      opacity: 0;
+
       display: flex;
       flex-wrap: wrap;
-      height: 5rem;
+      height: 15rem;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      input[type="checkbox"]:checked + label div {
+        box-shadow: 1px 4px 8px 3px rgba(14, 14, 14, 0.68);
+      }
+      input {
+        opacity: 0;
+        display: none;
+      }
       div {
-        margin-right: 1rem;
-        margin-bottom: 1rem;
-        height: 5rem;
+        margin: 0.8rem;
+        height: 3rem;
+        width: 3rem;
+        border: 1px solid rgba(0, 0, 0, 0.932);
       }
     }
     &__color {
@@ -551,4 +625,15 @@ select {
       background-color: pink;
     }
   }
+}
+
+.fixed {
+  position: fixed;
+}
+
+.right-side-card {
+  width: 50rem;
+  height: 30rem;
+  top: 10%;
+  right: 15%;
 }

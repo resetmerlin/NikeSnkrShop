@@ -17,16 +17,23 @@ export const cyberCartReducers = (state = { cyberCartItems: [] }, action) => {
       if (existItem) {
         return {
           ...state,
-          cartItems: state.cyberCartItems.map((x) =>
+          cyberCartItems: state.cyberCartItems.map((x) =>
             x.cyberProduct === existItem.cyberProduct ? item : x
           ),
         };
       } else {
         return {
           ...state,
-          cartItems: [...state.cyberCartItems, item],
+          cyberCartItems: [...state.cyberCartItems, item],
         };
       }
+    case CYBER_CART_REMOVE_ITEM:
+      return {
+        ...state,
+        cyberCartItems: state.cyberCartItems.filter(
+          (x) => x.cyberProduct !== action.payload
+        ),
+      };
 
     default:
       return state;

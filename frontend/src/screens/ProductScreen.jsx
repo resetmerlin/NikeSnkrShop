@@ -12,6 +12,8 @@ import Message from "../components/Message";
 const ProductScreen = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [qty, setQty] = useState(1);
+
   useEffect(() => {
     dispatch(cyberProductsDetailsAction(id));
   }, [dispatch, id]);
@@ -19,8 +21,6 @@ const ProductScreen = () => {
   const navigate = useNavigate(0);
   const cyberProductDetails = useSelector((state) => state.cyberProductDetails);
   const { loading, error, cyberProduct } = cyberProductDetails;
-
-  const [qty, setQty] = useState(0);
 
   const addToCartHandler = () => {
     navigate(`/cart/${id}?qty=${qty}`);

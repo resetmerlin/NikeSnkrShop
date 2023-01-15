@@ -68,7 +68,7 @@ const CyberProductSchema = mongoose.Schema(
       default: 0,
     },
     colors: {
-      type: String,
+      type: Array,
       required: true,
     },
   },

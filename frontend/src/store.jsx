@@ -11,10 +11,14 @@ const reducer = combineReducers({
   cyberProductDetails: cyberProductDetailReducers,
   cyberCart: cyberCartReducers,
 });
-// const cartItemsFromStorage = localStorage.getItem("cartItems")
-//   ? JSON.parse(localStorage.getItem("cartItems"))
-//   : [];
-const initialState = {};
+const cartItemsFromStorage = localStorage.getItem("cyberCartItems")
+  ? JSON.parse(localStorage.getItem("cyberCartItems"))
+  : [];
+const initialState = {
+  cyberCart: {
+    cyberCartItems: cartItemsFromStorage,
+  },
+};
 const middleware = [thunk];
 const store = createStore(
   reducer,
