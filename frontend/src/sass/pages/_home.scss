@@ -1,0 +1,91 @@
+.HomeScreen {
+  &__background {
+    &__logo {
+      z-index: 0;
+
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      font-size: 75rem;
+      color: $primary-color-dark;
+      letter-spacing: -1px;
+    }
+  }
+  &__left {
+    position: absolute;
+    top: 10%;
+    left: 14%;
+    width: 50rem;
+    height: 56rem;
+    z-index: 13;
+
+    &__big-text {
+      font-family: "Goldman", cursive;
+      display: block;
+
+      color: white;
+      font-size: 15rem;
+    }
+    &__small-text {
+      display: block;
+
+      color: rgba(255, 255, 255, 0.733);
+      font-size: 2rem;
+    }
+  }
+
+  &__center {
+    position: absolute;
+    top: 0%;
+    left: 30%;
+    width: 110rem;
+    height: 100rem;
+    z-index: 10;
+  }
+
+  &__right {
+    position: absolute;
+    top: 40%;
+    right: 24.1%;
+    width: 33rem;
+    height: 28rem;
+    display: flex;
+    display: block;
+    font-family: "Oswald", sans-serif;
+    z-index: 13;
+
+    &__product-name {
+      color: rgb(229, 186, 108);
+      font-size: 4rem;
+      display: block;
+    }
+    &__product-price {
+      font-size: 8rem;
+      display: block;
+      color: white;
+    }
+    &__product-description {
+      font-size: 2rem;
+      display: block;
+      color: white;
+    }
+  }
+  &__down {
+    position: absolute;
+    top: 80%;
+    left: 20%;
+    height: 10%;
+    display: flex;
+    text-transform: uppercase;
+    font-family: "Oswald", sans-serif;
+    img {
+      background-color: transparent;
+      width: 25rem;
+      height: 20rem;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+}

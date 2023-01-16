@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+}
+
+body {
+  display: block;
+}
+main {
+  height: 92vh;
+  width: 100%;
+  background-color: $primary-color;
+  position: relative;
+}

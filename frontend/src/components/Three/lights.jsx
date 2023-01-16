@@ -1,14 +1,13 @@
 import React from "react";
-import { PointLight } from "three";
 
 const Lights = () => {
   return (
     <>
-      <fog attach="fog" args={["white", 0, 30]} />
+      <fog attach="fog" args={["black", 0, 60]} />
       <ambientLight intensity={0.2} />
       <directionalLight
-        position={[-8, 16, -8]}
-        intensity={0}
+        position={[0, 10, 0]}
+        intensity={0.3}
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
         shadow-camera-far={50}
@@ -17,7 +16,6 @@ const Lights = () => {
         shadow-camera-top={10}
         shadow-camera-bottom={-10}
       ></directionalLight>
-      <pointLight position={[0, 50, 0]} intensity={0.6} />
     </>
   );
 };

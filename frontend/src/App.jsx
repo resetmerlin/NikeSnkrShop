@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import "./index.scss";
+import "./css/style.css";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
+import ProtoScreen from "./screens/ProtoScreen";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CartScreen from "./screens/CartScreen";
 function App() {

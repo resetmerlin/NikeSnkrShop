@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+
+.title {
+  font-size: 6rem;
+  margin-left: 3rem;
+  font-weight: 400;
+  padding: 7rem 0 7rem 0;
+  font-family: "Heebo", sans-serif;
+}
+
+.header {
+  font-family: "Oswald", sans-serif;
+
+  display: flex;
+  justify-content: space-around;
+  height: 8vh;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  background-color: $primary-color;
+  border-bottom: 1px solid $primary-color-2;
+
+  &__left {
+    display: flex;
+  }
+  &__center {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &__category {
+      display: flex;
+
+      margin: 0rem 2rem;
+      font-size: 2rem;
+      color: white;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        border-top: 5px solid $secondary-color;
+      }
+    }
+  }
+  a &__logo {
+    width: 9rem;
+    height: 4.3rem;
+  }
+
+  &__right {
+    display: flex;
+
+    a {
+      color: black;
+      text-align: center;
+      align-items: center;
+      display: flex;
+      background-color: white;
+      border-radius: 50%;
+
+      font-size: 5rem;
+      cursor: pointer;
+      text-decoration: none;
+      width: 5rem;
+      height: 5rem;
+      margin-left: 3rem;
+      justify-content: center;
+      &:active .nav {
+        opacity: 1;
+      }
+    }
+    .a__login {
+      background-color: $secondary-color;
+      color: white;
+    }
+    .bx-log-in {
+      font-size: 2.5rem;
+      cursor: pointer;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      margin-right: 0.5rem;
+    }
+    .navigation__checkbox {
+      display: none;
+
+      &:checked ~ .nav {
+        opacity: 1;
+        width: auto;
+      }
+    }
+    .bx-cart-alt {
+      color: black;
+      font-size: 3rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      text-align: center;
+      align-items: center;
+    }
+    .toggle-button {
+      display: flex;
+      position: relative;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+
+      .bxs-down-arrow {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        margin-left: 0.3rem;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+    }
+    .nav {
+      position: absolute;
+      top: 6%;
+      right: 9.3%;
+      background-color: white;
+      border: solid 1px black;
+      opacity: 0;
+      width: 0;
+
+      .nav__links {
+        font-size: 2rem;
+        list-style: none;
+
+        display: flex;
+        flex-direction: column;
+        li {
+          display: flex;
+          margin: 1.2rem 0;
+
+          text-align: center;
+          padding: 0rem 2rem;
+        }
+
+        &__list a {
+          text-decoration: none;
+          color: black;
+          transition: all 1.2s ease-out;
+          font-size: 2.5rem;
+          margin-left: 0;
+        }
+        &__list:hover {
+          transform: translateY(-3px);
+        }
+      }
+    }
+  }
+}

@@ -1,144 +1,55 @@
-import React, { useEffect, useState, setState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import CyberProduct from "../components/CyberProduct";
-import { cyberProductsAction } from "../actions/cyberProductActions";
-import Loading from "../components/Loading";
-import Message from "../components/Message";
-import SideCategory from "../components/SideCategory";
-const categorySortOptions = [
-  "Sort by: Default",
-  "Price low to high",
-  "Price high to low",
-  "Order by rating",
-];
-
+import React, { Suspense, useState, setState } from "react";
+import Floor from "../components/Three/floor";
+import Lights from "../components/Three/lights";
+import { HomeScreen3d } from "../components/Three/nike/Com";
+import { Canvas } from "@react-three/fiber";
+import { Loader, OrbitControls } from "@react-three/drei";
+import Card from "../components/Card";
 const HomeScreen = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    //soon as HomeScreen load, it is gonna fire off@!!!!
-    dispatch(cyberProductsAction());
-  }, [dispatch]);
-  const cyberProductList = useSelector((state) => state.cyberProductLists);
-
-  const { loading, error, cyberProducts } = cyberProductList;
-
-  const [filteredColor, setfilteredColor] = useState(cyberProducts);
-  const [colorChoseState, setColorChoseState] = useState(false);
-  const [categorySort, setCategorySort] = useState(categorySortOptions[0]);
-
-  const colorPlainDoubleArray = [];
-
-  const sortByDefault = cyberProducts
-    .sort((a, b) => a.threeValue - b.threeValue)
-    .map((x) => x);
-  const sortByRating = cyberProducts
-    .sort((a, b) => b.rating - a.rating)
-    .map((x) => x);
-
-  const sortBySmall = cyberProducts
-    .sort((a, b) => a.price - b.price)
-    .map((x) => x);
-  const sortByBig = cyberProducts
-    .sort((a, b) => b.price - a.price)
-    .map((x) => x);
-
-  for (const key in cyberProducts) {
-    colorPlainDoubleArray.push(cyberProducts[key].colors);
-  }
-  function handleColorChange(colorThatChose) {
-    setColorChoseState(true);
-    console.log(colorThatChose);
-    if (colorThatChose.length === 0) {
-      setfilteredColor(cyberProducts);
-      setColorChoseState(false);
-    } else {
-      setfilteredColor(
-        cyberProducts.filter((color) => {
-          let sameColors = color.colors.filter((item) =>
-            colorThatChose.includes(item)
-          );
-          return sameColors.length > 0;
-        })
-      );
-    }
-  }
-  console.log(filteredColor);
   return (
     <>
-      <h1 className="title">Lastst Products</h1>
-      <form className="Category-sort-box">
-        <select
-          value={categorySort}
-          className="Category-sort-box__list"
-          onChange={(e) => setCategorySort(e.target.value)}
+      <div className="HomeScreen__background">
+        <span className="HomeScreen__background__logo">NIKE</span>
+      </div>
+      <div className="HomeScreen__left">
+        <span className="HomeScreen__left__big-text">JUST</span>
+        <span className="HomeScreen__left__big-text">DO</span>
+        <span className="HomeScreen__left__big-text">IT</span>
+
+        <span className="HomeScreen__left__small-text">
+          You will experience outstanding
+        </span>
+        <span className="HomeScreen__left__small-text">
+          Nike Resell shop ever{" "}
+        </span>
+        <span className="HomeScreen__left__small-text">seen before.</span>
+      </div>
+      <div className="HomeScreen__center">
+        <Canvas
+          colormangement="true"
+          shadowmap="true "
+          camera={{ position: [-5, 4, 4], fov: 50 }}
         >
-          {categorySortOptions.map((value) => {
-            return (
-              <option value={value} key={value}>
-                {value}
-              </option>
-            );
-          })}
-        </select>
-      </form>
-      <SideCategory
-        colors={colorPlainDoubleArray}
-        onColorCheckboxChange={handleColorChange}
-      ></SideCategory>
-      {loading ? (
-        <div className="row">
-          <Loading />
-        </div>
-      ) : error ? (
-        <Message>{error}</Message>
-      ) : (
-        <div className="row">
-          {colorChoseState === true ? (
-            filteredColor.map((cyberProduct) => {
-              return (
-                <div className="row__column " key={cyberProduct._id}>
-                  <CyberProduct cyberProduct={cyberProduct}></CyberProduct>
-                </div>
-              );
-            })
-          ) : categorySort == categorySortOptions[0] ? (
-            sortByDefault.map((cyberProduct) => {
-              return (
-                <div className="row__column " key={cyberProduct._id}>
-                  <CyberProduct cyberProduct={cyberProduct}></CyberProduct>
-                </div>
-              );
-            })
-          ) : categorySort == categorySortOptions[1] ? (
-            sortBySmall.map((cyberProduct) => {
-              return (
-                <div className="row__column " key={cyberProduct._id}>
-                  <CyberProduct cyberProduct={cyberProduct}></CyberProduct>
-                </div>
-              );
-            })
-          ) : categorySort == categorySortOptions[2] ? (
-            sortByBig.map((cyberProduct) => {
-              return (
-                <div className="row__column " key={cyberProduct._id}>
-                  <CyberProduct cyberProduct={cyberProduct}></CyberProduct>
-                </div>
-              );
-            })
-          ) : categorySort == categorySortOptions[3] ? (
-            sortByRating.map((cyberProduct) => {
-              return (
-                <div className="row__column " key={cyberProduct._id}>
-                  <CyberProduct cyberProduct={cyberProduct}></CyberProduct>
-                </div>
-              );
-            })
-          ) : (
-            <h1>Error Occured while displaying products</h1>
-          )}
-        </div>
-      )}
+          <Suspense fallback={null}>
+            <Lights />
+            <HomeScreen3d />
+            <Floor />
+          </Suspense>
+          <OrbitControls />
+        </Canvas>
+      </div>
+      <div className="HomeScreen__right">
+        <span className="HomeScreen__right__product-name">NIKE ZOOM AIR</span>
+        <span className="HomeScreen__right__product-price">$260</span>
+
+        <span className="HomeScreen__right__product-description">
+          GET IT NOW
+        </span>
+      </div>
+
+      <div className="HomeScreen__down">
+        <Card /> <Card />
+      </div>
     </>
   );
 };
