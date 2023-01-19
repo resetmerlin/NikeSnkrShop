@@ -9,9 +9,12 @@ const Card = () => {
   ];
   return (
     <>
-      <img src="../images/card/nike-jordan.jpeg" alt="" />
+
       <div className="Card">
+      <img src="../images/card/Nike-Pegasus.png" className="Card__image"alt="" />
+
         <div className="Card__wrap">
+
           <div className="Card__name">Nike Jordan 1</div>
           <div className="Card__rate">
             <i class="bx bxs-star"></i>
