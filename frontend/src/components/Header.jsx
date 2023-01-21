@@ -6,14 +6,20 @@ const Header = () => {
     <header className="header">
       <div className="header__left">
         <Link to="/">
-          <img src="../images/Nike-logo.png" className="header__logo" alt="" />
+          <img
+            src="../images/nike-logo-black.png"
+            className="header__logo"
+            alt=""
+          />
         </Link>
       </div>
 
       <div className="header__center">
         <span className="header__center__category">MEN</span>
         <span className="header__center__category">FEMALE</span>
-        <span className="header__center__category">ALL</span>
+        <Link to="/snkrs" className="header__center__category">
+          ALL
+        </Link>
       </div>
       <div className="header__right">
         <Link to="/cart">

@@ -1,13 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 
-.title {
-  font-size: 6rem;
-  margin-left: 3rem;
-  font-weight: 400;
-  padding: 7rem 0 7rem 0;
-  font-family: "Heebo", sans-serif;
-}
-
 .header {
   font-family: "Oswald", sans-serif;
 
@@ -33,22 +25,25 @@
       display: flex;
 
       margin: 0rem 2rem;
-      font-size: 2rem;
-      color: white;
+      font-size: 2.5rem;
+      color: $font-color-default;
       height: 100%;
       justify-content: center;
       align-items: center;
       text-align: center;
-      font-weight: 500;
-      transition: all 0.2s ease-in-out;
+      font-weight: 600;
+      transition: all 0.1s ease-in-out;
+      cursor: pointer;
+      text-decoration: none;
       &:hover {
-        border-top: 5px solid $secondary-color;
+        border-top: 5px solid black;
+        color: rgb(126, 126, 126);
       }
     }
   }
   a &__logo {
-    width: 9rem;
-    height: 4.3rem;
+    width: 11rem;
+    height: 11.3rem;
   }
 
   &__right {
@@ -59,9 +54,9 @@
       text-align: center;
       align-items: center;
       display: flex;
-      background-color: white;
+      background-color: $bgb-color-white;
       border-radius: 50%;
-
+      border: solid 2px black;
       font-size: 5rem;
       cursor: pointer;
       text-decoration: none;
@@ -74,7 +69,7 @@
       }
     }
     .a__login {
-      background-color: $secondary-color;
+      background-color: $font-color-default;
       color: white;
     }
     .bx-log-in {
@@ -94,7 +89,7 @@
       }
     }
     .bx-cart-alt {
-      color: black;
+      color: $font-color-black;
       font-size: 3rem;
       font-weight: 800;
       cursor: pointer;
@@ -106,7 +101,7 @@
       display: flex;
       position: relative;
       font-size: 2.5rem;
-      color: white;
+      color: $font-color-default;
       cursor: pointer;
 
       .bxs-down-arrow {
@@ -122,8 +117,8 @@
       position: absolute;
       top: 6%;
       right: 9.3%;
-      background-color: white;
-      border: solid 1px black;
+      background-color: $font-color-default;
+      border: solid 1px $font-color-black;
       opacity: 0;
       width: 0;
 
@@ -143,7 +138,7 @@
 
         &__list a {
           text-decoration: none;
-          color: black;
+          color: $font-color-black;
           transition: all 1.2s ease-out;
           font-size: 2.5rem;
           margin-left: 0;

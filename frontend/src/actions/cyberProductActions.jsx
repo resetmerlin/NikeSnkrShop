@@ -13,7 +13,7 @@ export const cyberProductsAction = () => async (dispatch) => {
   try {
     dispatch({ type: CYBER_PRODUCT_LIST_REQUEST });
 
-    const { data } = await axios.get("/api/cyberProducts");
+    const { data } = await axios.get("/api/products");
 
     dispatch({
       type: CYBER_PRODUCT_LIST_SUCCESS,
@@ -34,7 +34,7 @@ export const cyberProductsDetailsAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: CYBER_PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/cyberProducts/${id}`);
+    const { data } = await axios.get(`/api/products/${id}`);
 
     dispatch({
       type: CYBER_PRODUCT_DETAILS_SUCCESS,

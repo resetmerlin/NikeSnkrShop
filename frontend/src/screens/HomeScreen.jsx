@@ -1,4 +1,7 @@
-import React, { Suspense, useState, setState } from "react";
+import React, { Suspense, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cyberProductsAction } from "../actions/cyberProductActions";
+
 import Floor from "../components/Three/floor";
 import Lights from "../components/Three/lights";
 import { HomeScreen3d } from "../components/Three/nike/Com";
@@ -6,6 +9,15 @@ import { Canvas } from "@react-three/fiber";
 import { Loader, OrbitControls } from "@react-three/drei";
 import Card from "../components/Card";
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(cyberProductsAction());
+  }, [dispatch]);
+
+  const cyberProductList = useSelector((state) => state.cyberProductLists);
+
+  const { loading, error, cyberProducts } = cyberProductList;
   return (
     <>
       <div className="HomeScreen__background">
@@ -46,10 +58,14 @@ const HomeScreen = () => {
           GET IT NOW
         </span>
       </div>
-
-      <div className="HomeScreen__down">
-        <Card /> <Card />
-      </div>
+      {cyberProducts &&
+        cyberProducts.map((product) => {
+          return (
+            <>
+              <Card key={product._id} product={product}></Card>
+            </>
+          );
+        })}
     </>
   );
 };

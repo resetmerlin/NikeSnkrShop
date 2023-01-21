@@ -44,7 +44,7 @@ const CartScreen = () => {
       {cyberCartItems.length === 0 ? (
         <Message>
           Your cart is empty ...
-          <Link to="/" style={{ color: "white" }}>
+          <Link to="/snkrs" style={{ color: "white" }}>
             Go Back
           </Link>
         </Message>

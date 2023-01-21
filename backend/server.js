@@ -9,12 +9,14 @@ dotenv.config();
 
 connectDatabase();
 const app = express();
-
 app.get("/", (req, res) => {
   res.send("APi is running");
 });
 
-app.use("/api/cyberProducts", productRoutes);
+app.get("/snkrs", (req, res) => {});
+
+app.use("/api/products", productRoutes);
+app.use("/api/products", productRoutes);
 
 //not found handler
 app.use(notFound);

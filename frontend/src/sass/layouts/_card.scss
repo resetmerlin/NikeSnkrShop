@@ -1,0 +1,66 @@
+.Card {
+  width: 42rem;
+  height: 19rem;
+  background-color: $bgb-color-white;
+  border-radius: 26px;
+  margin-right: 7rem;
+  display: flex;
+  z-index: 10;
+  top: 80%;
+  left: 30%;
+  display: flex;
+  text-transform: uppercase;
+  position: relative;
+  font-family: "Oswald", sans-serif;
+  flex-wrap: wrap;
+  &__wrap {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 4rem;
+    width: 50%;
+    height: 100%;
+  }
+  &__name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+  }
+  &__price {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+  }
+  &__rate {
+    display: flex;
+    font-size: 2rem;
+  }
+  .bx-plus {
+    position: absolute;
+    top: 74%;
+    right: -6%;
+  }
+}
+.Card__image {
+  position: absolute;
+  top: -25%;
+  left: -25%;
+
+  z-index: 100;
+  height: 30rem;
+  width: 25rem;
+  transform: rotate(0.9turn);
+}
+
+.shadow {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  border-radius: 50%;
+  box-shadow: 60px 4px 80px 10px #000000;
+  width: 7rem;
+  height: 7rem;
+}

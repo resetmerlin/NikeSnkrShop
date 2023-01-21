@@ -26,6 +26,10 @@ const CyberProductSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    card: {
+      type: String,
+      required: false,
+    },
     brand: {
       type: String,
       required: true,

@@ -1,0 +1,145 @@
+.Category-sort-box {
+  display: flex;
+  width: 40rem;
+  height: 3rem;
+  flex-direction: column;
+  font-size: 2.4rem;
+  position: absolute;
+  z-index: 1000;
+  top: 10%;
+  right: 18%;
+  select {
+    padding: 0.6rem 4rem 0.5rem 0.8rem;
+    font-family: "Oswald", sans-serif;
+    font-size: 2.5rem;
+    border: none;
+
+    option {
+      font-size: 2.5rem;
+    }
+  }
+  &__list {
+    position: absolute;
+
+    top: 18%;
+    left: 9%;
+
+    option {
+      text-decoration: none;
+      width: 20rem;
+      z-index: 1000;
+      font-size: 2rem;
+      list-style: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.Category-side {
+  width: 104rem;
+  height: 13rem;
+  position: absolute;
+
+  top: 10%;
+  left: 16%;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  span {
+    font-size: 3rem;
+  }
+  &__colors {
+    width: 100%;
+    height: 100%;
+    font-family: "Oswald", sans-serif;
+    display: flex;
+    font-size: 3rem;
+    text-align: center;
+    align-items: center;
+    #color-toggle {
+      opacity: 0;
+    }
+
+    #color-toggle:checked ~ &__wrap {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #color-toggle:checked ~ .color-toggle-button .bx-plus {
+      opacity: 0;
+    }
+    #color-toggle:checked ~ .color-toggle-button .bx-minus {
+      opacity: 1;
+    }
+
+    .color-toggle-button {
+      cursor: pointer;
+      display: flex;
+      justify-content: start;
+      i {
+        opacity: 1;
+        font-weight: 400;
+        margin-top: 0.7rem;
+        font-size: 3rem;
+      }
+      .bx-minus {
+        position: absolute;
+        top: 34%;
+        left: 8%;
+        opacity: 0;
+        z-index: 10;
+      }
+    }
+    &__wrap {
+      opacity: 0;
+      visibility: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      height: 15rem;
+      justify-content: start;
+      align-items: center;
+      width: 100%;
+      input[type="checkbox"]:checked + label div {
+        box-shadow: 1px 4px 8px 3px rgba($font-color-black, 0.68);
+      }
+      input {
+        opacity: 0;
+        display: none;
+      }
+      div {
+        margin: 0.8rem;
+        height: 3rem;
+        width: 3rem;
+        border: 1px solid rgba($font-color-black, 0.932);
+      }
+    }
+    &__color {
+      margin-right: 1rem;
+      width: 100%;
+      background-color: pink;
+    }
+  }
+}
+
+.Category-sort {
+  position: absolute;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-size: 2.4rem;
+  display: flex;
+  width: 26rem;
+  height: 5rem;
+  flex-direction: column;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0;
+  cursor: pointer;
+}

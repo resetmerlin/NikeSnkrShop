@@ -7,29 +7,23 @@ import ProductScreen from "./screens/ProductScreen";
 import ProtoScreen from "./screens/ProtoScreen";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CartScreen from "./screens/CartScreen";
+import SnkrScreen from "./screens/SnkrScreen";
 function App() {
   return (
     <BrowserRouter>
       <Header />
 
       <main>
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<HomeScreen />} exact></Route>
-            <Route
-              path="/cyberProduct/:id"
-              element={<ProductScreen />}
-              exact
-            ></Route>
-            <Route path="/cart">
-              <Route path=":id" element={<CartScreen />} />
-              <Route path="" element={<CartScreen />} />
-            </Route>
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} exact></Route>
+          <Route path="/snkrs" element={<SnkrScreen />} exact></Route>
+          <Route path="/product/:id" element={<ProductScreen />} exact></Route>
+          <Route path="/cart">
+            <Route path=":id" element={<CartScreen />} />
+            <Route path="" element={<CartScreen />} />
+          </Route>
+        </Routes>
       </main>
-
-      <Footer />
     </BrowserRouter>
   );
 }

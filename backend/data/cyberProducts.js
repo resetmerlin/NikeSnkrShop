@@ -1,8 +1,10 @@
 const cyberProducts = [
   {
-    name: "Nike Air Jordan 1 Retro High OG",
+    name: "Nike Jordan 1 Retro",
 
     image: "/images/nike.jpg",
+    card: "/images/card/Card-jordan.png",
+
     description: "This is nike Air Jordan 1",
     brand: "Nike",
     category: "Shoes",
@@ -16,6 +18,7 @@ const cyberProducts = [
   {
     name: "Nike Dunk SB Street",
     image: "/images/Nike-Dunk-Sb.png",
+    card: "/images/card/Card-SB.png",
 
     description: "Nike Dunk SB Street",
     brand: "Nike",
@@ -48,8 +51,9 @@ const cyberProducts = [
     colors: ["rgb(232,232,230)", "rgb(39,118,199)"],
   },
   {
-    name: "Nike Air Pegasus 36",
+    name: "Nike Air Pegasus",
     image: "/images/Nike-Pegasus-Zoom.png",
+    card: "/images/card/Card-Pegasus.png",
 
     description: "This is Nike Air Pegasus 36",
     brand: "Nike",
@@ -64,6 +68,9 @@ const cyberProducts = [
   {
     name: "Nike Air Max Skor",
     image: "/images/Nike-Skor.png",
+
+    card: "/images/card/Card-Skor.png",
+
     description: "This Nike Air Max Skor",
     brand: "Nike",
     category: "Shoes",
@@ -75,7 +82,7 @@ const cyberProducts = [
     colors: ["rgb(50,54,54)", "rgb(255,191,135)", "rgb(137,91,109)"],
   },
   {
-    name: "Nike Dunk Low Retro Olive",
+    name: "Nike Retro Olive",
     image: "/images/Nike-Dunk-Low.jpg",
     description: "This Nike Dunk Low Retro Olive",
     brand: "Nike",

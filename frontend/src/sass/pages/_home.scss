@@ -4,7 +4,7 @@
       z-index: 0;
 
       position: absolute;
-      top: 45%;
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
 
@@ -16,7 +16,7 @@
   &__left {
     position: absolute;
     top: 10%;
-    left: 14%;
+    left: 18%;
     width: 50rem;
     height: 56rem;
     z-index: 13;
@@ -24,31 +24,33 @@
     &__big-text {
       font-family: "Goldman", cursive;
       display: block;
+      font-weight: 600;
 
-      color: white;
-      font-size: 15rem;
+      color: $font-color-default;
+      font-size: 17rem;
     }
     &__small-text {
       display: block;
-
-      color: rgba(255, 255, 255, 0.733);
-      font-size: 2rem;
+      font-weight: 600;
+      color: rgba($font-color-default, 0.633);
+      font-size: 2.2rem;
     }
   }
 
   &__center {
     position: absolute;
-    top: 0%;
-    left: 30%;
+    top: 40%;
+    left: 54%;
     width: 110rem;
     height: 100rem;
     z-index: 10;
+    transform: translate(-50%, -50%);
   }
 
   &__right {
     position: absolute;
     top: 40%;
-    right: 24.1%;
+    right: 18.1%;
     width: 33rem;
     height: 28rem;
     display: flex;
@@ -57,29 +59,29 @@
     z-index: 13;
 
     &__product-name {
-      color: rgb(229, 186, 108);
-      font-size: 4rem;
+      color: $font-primary-2;
+      font-size: 5rem;
       display: block;
     }
     &__product-price {
-      font-size: 8rem;
+      font-size: 10rem;
       display: block;
-      color: white;
+      color: rgb(37, 37, 37);
+      font-weight: 600;
     }
     &__product-description {
-      font-size: 2rem;
+      font-size: 2.2rem;
       display: block;
-      color: white;
+      color: $font-color-default;
     }
   }
   &__down {
     position: absolute;
     top: 80%;
-    left: 20%;
+    left: 30%;
     height: 10%;
     display: flex;
     text-transform: uppercase;
     font-family: "Oswald", sans-serif;
-
   }
 }
