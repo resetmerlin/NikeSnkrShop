@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Rating from "../components/Rating";
 import Three from "../components/Three";
 import { cyberProductsDetailsAction } from "../actions/cyberProductActions";
-import Loading from "../components/Loading";
-import Message from "../components/Message";
+import { cyberProductsAction } from "../actions/cyberProductActions";
 
+import ProductSideList from "../components/ProductSideList";
 const ProductScreen = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -16,21 +16,34 @@ const ProductScreen = () => {
 
   useEffect(() => {
     dispatch(cyberProductsDetailsAction(id));
+    dispatch(cyberProductsAction());
   }, [dispatch, id]);
 
   const navigate = useNavigate(0);
   const cyberProductDetails = useSelector((state) => state.cyberProductDetails);
   const { loading, error, cyberProduct } = cyberProductDetails;
-
+  const cyberProductList = useSelector((state) => state.cyberProductLists);
+  const { cyberProducts } = cyberProductList;
   const addToCartHandler = () => {
     navigate(`/cart/${id}?qty=${qty}`);
+  };
+  const nextProductHandler = () => {
+    for (let nike = 0; nike < cyberProducts.length; nike++) {
+      if (cyberProducts[nike]._id === cyberProduct._id) {
+        navigate(`/product/${cyberProducts[nike + 1]._id}`);
+      }
+    }
   };
   return (
     <>
       <div className="productScreen__top">
         <Link to="/snkrs">
-          <i class="bx bx-arrow-back"></i>
+          <i className="bx bx-arrow-back"></i>
         </Link>
+
+        <span className="productScreen__top-number">
+          /0{cyberProduct.threeValue}
+        </span>
       </div>
       <div className="productScreen__middle">
         <div className="productScreen__middle-split">
@@ -48,7 +61,12 @@ const ProductScreen = () => {
             <span className="productScreen__product-status">
               CURRENT STOCKS: {cyberProduct.countInStock}
             </span>
-            <span className="productScreen__product-rate">EXCELLENCE</span>
+            <span className="productScreen__product-rate">
+              <Rating
+                value={cyberProduct.rating}
+                reviews={cyberProduct.numReviews}
+              />
+            </span>
             <span
               className="productScreen__product-select"
               style={{ display: "flex" }}
@@ -71,7 +89,7 @@ const ProductScreen = () => {
           </div>
           <img
             className="productScreen__model-image"
-            src="https://image.msscdn.net/mfile_s01/_shopstaff/view.staff_63c0eb0f3e94a.jpg?20230113142948"
+            src="https://wallpaper.dog/large/7924.jpg"
           />
         </div>
         <div className="productScreen__middle-split">
@@ -90,7 +108,28 @@ const ProductScreen = () => {
           </div>
         </div>
       </div>
-      <div className="productScreen__right"></div>
+      <div className="productScreen__right">
+        <div className="productScreen__right__user">
+          <i className="bx bxs-user-circle"></i>
+          <span>User name</span>
+        </div>
+        <div className="productScreen__right__wrap">
+          {cyberProducts.map((product) => {
+            return (
+              <ProductSideList
+                key={product._id}
+                products={product}
+                currenProduct={cyberProduct._id}
+              ></ProductSideList>
+            );
+          })}
+        </div>
+        <button onClick={nextProductHandler}>
+          <div className="productScreen__right__home">
+            <i className="bx bxs-down-arrow"></i>
+          </div>
+        </button>
+      </div>
       <div className="productScreen__down">
         <button
           className="productScreen__down__cart"
@@ -110,79 +149,6 @@ const ProductScreen = () => {
           <div>FAVORITE</div>
         </Link>
       </div>
-
-      {/* <div className="ProductScreen__wrap">
-        <Link to={"/snkrs"}>
-          <i className="bx bx-arrow-back back"></i>
-        </Link>
-        <div className="row__column__wrap img-size-middle">
-          <div className="cyberCard__image__wrap ">
-            <Three model={cyberProduct.threeValue} />
-
-            <div
-              className="cyberCard__image img"
-              // style={{ backgroundImage: `url(${cyberProduct.image})` }}
-            ></div>
-          </div>
-        </div>
-        <div className="flexdirection-column font-size-m items-center">
-          <div className="cyberCard__title">
-            <div className="cyberCard__title title-font-size-big ">
-              {cyberProduct.name}
-            </div>
-          </div>
-
-          <Rating
-            value={cyberProduct.rating}
-            reviews={cyberProduct.numReviews}
-          />
-
-          <div className="cyberCard__text">
-            <div className="cyberCard__title">${cyberProduct.price}</div>
-          </div>
-
-          <div className="cyberCard__text margin-top-s">
-            <div className="cyberCard__title  item-space-between">
-              <span className="margin-right-s">Price:</span>
-              <span>${cyberProduct.price}</span>
-            </div>
-            <div className="cyberCard__title">
-              <span className="margin-right-s">Status:</span>
-              <span>{cyberProduct.countInStock}</span>
-            </div>
-            <div className="cyberCard__text   display-flex default-center-flex">
-              <span className="font-size-small margin-right-s">Select:</span>
-              {cyberProduct.countInStock > 0 ? (
-                <form>
-                  <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                    {[...Array(cyberProduct.countInStock).keys()].map((x) => (
-                      <option key={x + 1} value={x + 1}>
-                        {x + 1}
-                      </option>
-                    ))}
-                  </select>
-                </form>
-              ) : (
-                <h1>Wait for new stock</h1>
-              )}
-            </div>
-
-            <button
-              className="cyberCard__title button-type-order margin-top-s font-size-small hover-effect-1 link-default-style "
-              type="button"
-              onClick={addToCartHandler}
-            >
-              {cyberProduct.countInStock == 0 ? (
-                " Out of Stock"
-              ) : (
-                <Link to="/cart" className="font-size-small">
-                  Order now
-                </Link>
-              )}
-            </button>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 };

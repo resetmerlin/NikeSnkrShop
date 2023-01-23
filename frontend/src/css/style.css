@@ -169,6 +169,12 @@
   height: 8%;
   top: 0;
   left: 0; }
+  .productScreen__top span {
+    position: absolute;
+    font-size: 6rem;
+    left: 50%;
+    font-weight: 700;
+    top: 27%; }
   .productScreen__top a {
     position: absolute;
     top: 27%;
@@ -276,7 +282,7 @@
   top: 82%;
   display: flex; }
   .productScreen__down__Link {
-    font-size: 3rem;
+    font-size: 2.4rem;
     text-decoration: none;
     width: 26%;
     height: 100%;
@@ -290,7 +296,8 @@
     text-decoration: none;
     width: 26%;
     height: 100%;
-    font-weight: 600; }
+    font-weight: 600;
+    cursor: pointer; }
   .productScreen__down__cart {
     width: 20%;
     height: 100%;
@@ -306,14 +313,73 @@
     justify-content: center;
     display: flex;
     align-items: center;
-    color: black; }
+    color: black;
+    text-decoration: none;
+    font-size: 2.4rem;
+    font-weight: 600;
+    cursor: pointer; }
 
 .productScreen__right {
   position: absolute;
   width: 10%;
   height: 100%;
   top: 0;
-  right: 0; }
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  border-left: 1px solid black; }
+  .productScreen__right__user {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 28.8rem;
+    height: 20rem;
+    background-color: black;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: flex; }
+    .productScreen__right__user i {
+      color: white;
+      font-size: 8rem; }
+    .productScreen__right__user span {
+      color: white;
+      font-size: 2rem; }
+  .productScreen__right-image {
+    width: 16rem;
+    height: 12rem;
+    background-size: cover;
+    background-position: center; }
+  .productScreen__right__wrap {
+    position: absolute;
+    top: 18%;
+    left: 23%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16rem;
+    height: 72rem; }
+  .productScreen__right__home {
+    position: absolute;
+    top: 80%;
+    left: 23%;
+    width: 16rem;
+    height: 16rem;
+    background-color: black;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; }
+    .productScreen__right__home i {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      color: white; }
 
 footer {
   text-align: center;
@@ -499,7 +565,14 @@ main {
   text-transform: uppercase;
   position: relative;
   font-family: "Oswald", sans-serif;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  box-shadow: 1px 1px 30px 0.3px rgba(65, 65, 65, 0.57);
+  cursor: pointer;
+  transition: all 0.2s ease; }
+  .Card:hover {
+    transform: scale(1.05); }
+  .Card a {
+    color: black; }
   .Card__wrap {
     position: absolute;
     top: 0;

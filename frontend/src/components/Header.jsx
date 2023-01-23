@@ -33,7 +33,7 @@ const Header = () => {
 
         <label htmlFor="navi-toggle" className="toggle-button">
           <Link to="/login" className="a__login">
-            <i class="bx bx-log-in logo"></i>
+            <i className="bx bx-log-in logo"></i>
           </Link>
           <i className="bx bxs-down-arrow"></i>
         </label>

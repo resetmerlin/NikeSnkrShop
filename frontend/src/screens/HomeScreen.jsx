@@ -7,6 +7,7 @@ import Lights from "../components/Three/lights";
 import { HomeScreen3d } from "../components/Three/nike/Com";
 import { Canvas } from "@react-three/fiber";
 import { Loader, OrbitControls } from "@react-three/drei";
+import { NikeHome } from "../components/Three/nike/Nike-Home";
 import Card from "../components/Card";
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,9 @@ const HomeScreen = () => {
   }, [dispatch]);
 
   const cyberProductList = useSelector((state) => state.cyberProductLists);
-
   const { loading, error, cyberProducts } = cyberProductList;
+  const CardList = cyberProducts.filter((items) => items.card);
+
   return (
     <>
       <div className="HomeScreen__background">
@@ -44,7 +46,7 @@ const HomeScreen = () => {
         >
           <Suspense fallback={null}>
             <Lights />
-            <HomeScreen3d />
+            <NikeHome />
             <Floor />
           </Suspense>
           <OrbitControls />
@@ -58,14 +60,9 @@ const HomeScreen = () => {
           GET IT NOW
         </span>
       </div>
-      {cyberProducts &&
-        cyberProducts.map((product) => {
-          return (
-            <>
-              <Card key={product._id} product={product}></Card>
-            </>
-          );
-        })}
+      {CardList.map((item) => {
+        return <Card key={item._id} product={item} />;
+      })}
     </>
   );
 };

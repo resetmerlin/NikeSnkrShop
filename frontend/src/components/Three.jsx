@@ -42,7 +42,6 @@ const Three = ({ model }) => {
         </Suspense>
         <OrbitControls />
       </Canvas>
-      <Loader />
     </>
   );
 };

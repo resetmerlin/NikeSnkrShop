@@ -39,8 +39,8 @@ const SideCategory = ({ colors, onColorCheckboxChange }) => {
           <input type="checkbox" id="color-toggle" />
           <label htmlFor="color-toggle" className="color-toggle-button">
             <span>Colors</span>
-            <i class="bx bx-plus"></i>
-            <i class="bx bx-minus"></i>
+            <i className="bx bx-plus"></i>
+            <i className="bx bx-minus"></i>
           </label>
 
           <div className="Category-side__colors__wrap">

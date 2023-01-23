@@ -9,7 +9,6 @@ Title: Nike Zoom Pegasus Shoe by DigitWorlds.com -
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame } from "react-three-fiber";
 
 export function HomeScreen3d(props) {
   const { nodes, materials } = useGLTF(
