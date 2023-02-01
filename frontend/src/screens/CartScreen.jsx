@@ -10,10 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import { useNavigate } from "react-router";
 
-import {
-  addItemToCart,
-  removeCartItemAction,
-} from "../actions/cyberCartAction";
+import { addItemToCart } from "../actions/cyberCartAction";
 const CartScreen = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -26,7 +23,6 @@ const CartScreen = () => {
 
   const { cyberCartItems } = cyberCart;
 
-  console.log(cyberCartItems);
   useEffect(() => {
     if (id) {
       dispatch(addItemToCart(id, qty));
@@ -39,8 +35,6 @@ const CartScreen = () => {
   };
   return (
     <>
-      {" "}
-      <h1 className="title">Order/Payment</h1>
       {cyberCartItems.length === 0 ? (
         <Message>
           Your cart is empty ...
@@ -49,39 +43,68 @@ const CartScreen = () => {
           </Link>
         </Message>
       ) : (
-        <>
-          <div className="row__cart">
-            <div
-              className="row__list-group-item "
-              style={{
-                height: "3rem",
-                borderBottom: "1px solid black",
-              }}
-            >
-              <div className="list-item-image"></div>
-              <div className="list-item-title">Product name</div>
+        <div className="Cart-Screen">
+          <span className="Cart-Screen__title title-m">Cart</span>
+          <div className="Cart-Screen__info">
+            <div className="Cart-Screen__info__wrap">
+              <div className="Cart-Screen__info__frame">
+                <span style={{ width: "15rem" }}>Product</span>
+                <span style={{ width: "18rem" }}>name</span>
 
-              <div className="list-item-price">Price</div>
-
-              <div className="list-item-qty">Quantity</div>
-              <div className="list-item-qty">Delete</div>
-            </div>
-            <div className="row">
+                <span>Price</span>
+                <span>Quantity</span>
+                <span>Delete</span>
+              </div>
               {cyberCartItems.map((cartItems) => (
-                <CartList CartValue={cartItems}></CartList>
+                <CartList key={cartItems._id} CartValue={cartItems}></CartList>
               ))}
+            </div>
+
+            <div className="Cart-Screen__info__delivery">
+              <span className="Cart-Screen__info__delivery__title title-m">
+                Delivery
+              </span>
+              <div className="Cart-Screen__info__delivery__price"></div>
             </div>
           </div>
 
-          <div className="flexdirection-column font-size-m items-center fixed right-side-card">
-            <div className="cyberCard__title title-font-size-big ">
-              SUBTOTAL(
-              {cyberCartItems.reduce((acc, item) => acc + Number(item.qty), 0)})
-              Items
+          <div className="Cart-Screen__side-bar">
+            <div className="Cart-Screen__side-bar__info">
+              <div className="Cart-Screen__side-bar__info__wrap">
+                <span className="Cart-Screen__side-bar__address-specific">
+                  416 W 8th St
+                </span>
+                <span className="Cart-Screen__side-bar__address-city">
+                  Los Angeles CA USA
+                </span>
+              </div>
+              <span className="Cart-Screen__side-bar__date">
+                Date: 2023-01-24
+              </span>
             </div>
-            <div className="cyberCard__text">
-              <div className="cyberCard__title font-size-s">
-                Total{" "}
+
+            <div className="Cart-Screen__side-bar__summary">
+              <span className="Cart-Screen__side-bar__summary__title title-m">
+                Order summary
+              </span>
+              <span className="Cart-Screen__side-bar__summary__subtotal">
+                <span>SUBTOTAL</span>(
+                {cyberCartItems.reduce(
+                  (acc, item) => acc + Number(item.qty),
+                  0
+                )}
+                ) Items
+              </span>
+              <span className="Cart-Screen__side-bar__summary__shipping">
+                <span>SHIPPING</span>
+                $3
+              </span>
+              <span className="Cart-Screen__side-bar__summary__tax">
+                <span>TAX</span>
+                $5
+              </span>
+              <span className="Cart-Screen__side-bar__summary__total-amount title-s">
+                <span> Total</span>
                 {cyberCartItems
                   .reduce(
                     (acc, item) => acc + Number(item.qty) * Number(item.price),
@@ -89,18 +112,18 @@ const CartScreen = () => {
                   )
                   .toFixed(1)}{" "}
                 won
-              </div>
+              </span>
+
+              <button
+                className="Cart-Screen__side-bar__summary__check-out"
+                type="button"
+                onClick={checkoutHandler}
+              >
+                Proceed To Checkout
+              </button>
             </div>
-            <button
-              className="cyberCard__title button-type-order margin-top-s font-size-small hover-effect-1 link-default-style "
-              type="button"
-              onClick={checkoutHandler}
-              style={{ width: "47rem" }}
-            >
-              Proceed To Checkout
-            </button>
           </div>
-        </>
+        </div>
       )}
     </>
   );

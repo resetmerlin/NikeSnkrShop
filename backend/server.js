@@ -4,11 +4,16 @@ import colors from "colors";
 import dotenv from "dotenv";
 import connectDatabase from "./config/database.js";
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddlewar.js";
 dotenv.config();
 
 connectDatabase();
+
 const app = express();
+
+app.use(express.json());
+//this allow us to accept json data in the body
 app.get("/", (req, res) => {
   res.send("APi is running");
 });
@@ -16,7 +21,7 @@ app.get("/", (req, res) => {
 app.get("/snkrs", (req, res) => {});
 
 app.use("/api/products", productRoutes);
-app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 //not found handler
 app.use(notFound);

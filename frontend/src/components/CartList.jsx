@@ -14,20 +14,22 @@ const CartList = ({ CartValue }) => {
   };
   return (
     <>
-      <div className="row__list-group-item">
+      <div className="Cart-Screen__info__products ">
         <div
-          className="list-item-image"
+          className="Cart-Screen__info__products__img"
           style={{ backgroundImage: `url(${CartValue.image})` }}
         ></div>
         <Link
-          to={`/cyberProduct/${CartValue.cyberProduct}`}
-          className="list-item-title"
+          to={`/product/${CartValue.cyberProduct}`}
+          className="Cart-Screen__info__products__name"
         >
           {CartValue.name}
         </Link>
-        <div className="list-item-price">{CartValue.price}</div>
+        <div className="Cart-Screen__info__products__price">
+          ${CartValue.price}
+        </div>
 
-        <form className="list-item-qty">
+        <form className="Cart-Screen__info__products__qty">
           <select
             value={CartValue.qty}
             onChange={(e) =>
@@ -44,15 +46,14 @@ const CartList = ({ CartValue }) => {
           </select>
         </form>
 
-        <div className="list-item-delete ">
-          <button
-            type="button"
-            onClick={() => removeItemFromCart(CartValue.cyberProduct)}
-          >
-            {" "}
-            <i className="bx bxs-trash"></i>
-          </button>
-        </div>
+        <button
+          className="Cart-Screen__info__products__delete"
+          type="button"
+          onClick={() => removeItemFromCart(CartValue.cyberProduct)}
+        >
+          {" "}
+          <i className="bx bx-x"></i>{" "}
+        </button>
       </div>
     </>
   );

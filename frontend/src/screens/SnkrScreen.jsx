@@ -87,8 +87,6 @@ const SnkrScreen = () => {
     }
   }
 
-  console.log(filteredColor);
-
   return (
     <>
       <h1 className="main__title">Lastst Products</h1>

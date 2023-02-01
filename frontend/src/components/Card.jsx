@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ product }) => {
-  console.log(product);
   return (
     <>
       {product.threeValue == 2 ? (

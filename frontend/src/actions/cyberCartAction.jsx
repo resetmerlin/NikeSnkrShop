@@ -9,7 +9,7 @@ import axios from "axios";
 //action creator
 //Redux thunk
 export const addItemToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/cyberProducts/${id}`);
+  const { data } = await axios.get(`/api/products/${id}`);
 
   dispatch({
     type: CYBER_CART_ADD_ITEM,
@@ -29,6 +29,7 @@ export const addItemToCart = (id, qty) => async (dispatch, getState) => {
 };
 
 export const removeCartItemAction = (id) => async (dispatch, getState) => {
+  // get all items from cart ==> getState
   dispatch({
     type: CYBER_CART_REMOVE_ITEM,
     payload: id,

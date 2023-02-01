@@ -6,10 +6,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Goldman&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 @import "abstracts/variable";
+
 @import "pages/home";
 @import "pages/snkrScreen";
 @import "pages/productScreen";
+@import "pages/cartScreen";
 
 @import "layouts/footer";
 @import "mediaqueries/mediaqueries";
@@ -20,6 +23,9 @@
 @import "layouts/header";
 @import "layouts/card";
 @import "layouts/category";
+@import "layouts/cartList";
+@import "abstracts/grid";
+@import "layouts/cartSideBar";
 
 /*
 

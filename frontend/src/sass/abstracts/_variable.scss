@@ -6,3 +6,45 @@ $font-color-default: rgb(0, 0, 0);
 $bgb-color-white: white;
 $font-color-black: black;
 $font-primary-2: rgb(3, 3, 3);
+//GRID
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$gutter-horizontal: 6rem;
+
+//Font-szie
+
+$default-font-size: 1.6rem;
+
+//border-radius
+$border-radius-small: 3px;
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    //standard version of the clearfix
+
+    //this clearfix is the clear property.
+    //this would clear both floats, so float left and float right so that
+    //it's gonna work no matter if we use flat left or float right
+
+    clear: both;
+  }
+}
+//display flex
+.display-flex {
+  display: flex;
+  align-items: center;
+}
+
+.title-m {
+  font-size: 3.5rem;
+  color: black;
+  font-weight: 600;
+}
+.title-s {
+  font-size: 2.5rem;
+  color: black;
+  font-weight: 600;
+}

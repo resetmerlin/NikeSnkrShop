@@ -1,0 +1,86 @@
+.Cart-Screen {
+  &__side-bar {
+    position: absolute;
+    width: 25%;
+    height: 60%;
+    top: 8%;
+    right: 10%;
+    padding: 3rem;
+    box-shadow: 0px 0px 20px 4px #afafaf;
+    font-family: "Noto Sans KR", sans-serif;
+    &__info {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__date {
+      font-size: 2rem;
+      color: $font-color-black;
+    }
+    &__info__wrap span {
+      color: $font-color-black;
+      font-size: 2rem;
+      display: block;
+    }
+
+    &__summary {
+      display: flex;
+      flex-direction: column;
+      &__title {
+        width: 100%;
+        margin-top: 3rem;
+        height: 8rem;
+        background-color: rgb(218, 218, 218);
+        text-align: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      &__subtotal {
+        display: flex;
+        justify-content: space-between;
+        font-size: 2rem;
+        margin: 2rem 0;
+      }
+
+      &__shipping {
+        display: flex;
+        justify-content: space-between;
+        font-size: 2rem;
+        margin: 2rem 0;
+      }
+      &__tax {
+        display: flex;
+        justify-content: space-between;
+        font-size: 2rem;
+        margin: 2rem 0;
+      }
+
+      &__total-amount {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 0;
+        border-top: 1px solid rgb(201, 201, 201);
+        border-bottom: 1px solid rgb(201, 201, 201);
+      }
+      &__check-out {
+        position: absolute;
+        left: 10%;
+        top: 80%;
+        width: 80%;
+        height: 6rem;
+        font-size: 2.2rem;
+        font-weight: 600;
+
+        background-color: black;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+        &:hover {
+          transform: translateY(-1rem);
+        }
+      }
+    }
+  }
+}
