@@ -6,10 +6,12 @@ import {
   cyberProductDetailReducers,
 } from "./reducers/cyberProductReducers";
 import { cyberCartReducers } from "./reducers/cyberCartReducers";
+import { cyberUserLoginReducers } from "./reducers/cyberUserReducer";
 const reducer = combineReducers({
   cyberProductLists: cyberProductReducers,
   cyberProductDetails: cyberProductDetailReducers,
   cyberCart: cyberCartReducers,
+  cyberLogin: cyberUserLoginReducers,
 });
 const cartItemsFromStorage = localStorage.getItem("cyberCartItems")
   ? JSON.parse(localStorage.getItem("cyberCartItems"))
