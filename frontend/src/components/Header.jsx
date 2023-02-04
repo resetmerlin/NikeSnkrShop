@@ -1,9 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
+  const [loginHeader, setLoginHeader] = useState("");
+  useEffect(() => {
+    if (location.pathname == "/users/login") {
+      setLoginHeader("none");
+    } else {
+      setLoginHeader("");
+    }
+  }, [location.pathname, setLoginHeader]);
+
   return (
-    <header className="header">
+    <header className="header" style={{ display: `${loginHeader}` }}>
       <div className="header__left">
         <Link to="/">
           <img
@@ -14,7 +25,7 @@ const Header = () => {
         </Link>
       </div>
 
-      <div className="header__center">
+      <div className="header__center ">
         <span className="header__center__category">MEN</span>
         <span className="header__center__category">FEMALE</span>
         <Link to="/snkrs" className="header__center__category">
@@ -32,7 +43,7 @@ const Header = () => {
         />
 
         <label htmlFor="navi-toggle" className="toggle-button">
-          <Link to="/login" className="a__login">
+          <Link to="/users/login" className="a__login">
             <i className="bx bx-log-in logo"></i>
           </Link>
           <i className="bx bxs-down-arrow"></i>

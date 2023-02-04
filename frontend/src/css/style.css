@@ -441,6 +441,94 @@
   background-color: #dad9d9;
   height: 20px; }
 
+.loginScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+  font-family: "Oswald", sans-serif; }
+  .loginScreen__form input {
+    display: block;
+    width: 50rem;
+    height: 7rem;
+    background-color: rgba(194, 194, 194, 0.493);
+    border: none;
+    margin: 0.5rem 0;
+    font-size: 2.5rem;
+    border-radius: 1rem;
+    padding: 1rem; }
+  .loginScreen__form label {
+    font-size: 2.5rem;
+    display: flex; }
+  .loginScreen__form button {
+    margin: 3rem 0;
+    width: 51rem;
+    height: 6rem;
+    font-size: 2.3rem;
+    color: white;
+    background-color: black;
+    border-radius: 1rem;
+    cursor: pointer; }
+  .loginScreen__left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 83%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; }
+    .loginScreen__left__logo {
+      text-decoration: none;
+      font-size: 5.5rem;
+      color: black;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-weight: 600;
+      width: 50rem;
+      height: 16rem;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 7rem; }
+      .loginScreen__left__logo img {
+        width: 13rem;
+        height: 18rem; }
+    .loginScreen__left__title {
+      font-size: 4.5rem;
+      font-weight: 600;
+      width: 50rem;
+      height: 7rem;
+      display: flex;
+      justify-content: flex-start; }
+    .loginScreen__left__side-title {
+      font-size: 2rem;
+      color: #979797;
+      width: 50rem;
+      height: 7rem;
+      display: flex;
+      justify-content: flex-start; }
+  .loginScreen__right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 97%;
+    width: 70%;
+    background-image: url(../images/loginScreen__wallpaper.jpg);
+    background-position: center;
+    background-size: contain;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+    border-top-left-radius: 7.5rem; }
+
 footer {
   text-align: center;
   font-size: 2.5rem;
@@ -942,10 +1030,6 @@ main {
       .Cart-Screen__side-bar__summary__check-out:hover {
         transform: translateY(-1rem); }
 
-/*
-
-  HeaderScreen
-  */
 .back {
   font-size: 7rem;
   text-decoration: none;

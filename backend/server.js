@@ -6,6 +6,11 @@ import connectDatabase from "./config/database.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddlewar.js";
+
+import process from "process";
+
+const PORT = process.env.PORT || 5050;
+
 dotenv.config();
 
 connectDatabase();
@@ -28,7 +33,7 @@ app.use(notFound);
 //error middleware
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5050;
+//listen() method creates a listener on the specified port or path.
 app.listen(
   PORT,
   console.log(
@@ -36,4 +41,3 @@ app.listen(
       .underline.bold
   )
 );
-//listen() method creates a listener on the specified port or path.

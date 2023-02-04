@@ -7,6 +7,8 @@ import cyberUserModel from "./models/userModel.js";
 import cyberProductModel from "./models/productModel.js";
 import cyberOrderModel from "./models/orderModel.js";
 import connectDatabase from "./config/database.js";
+import process from "process";
+
 dotenv.config();
 
 connectDatabase();

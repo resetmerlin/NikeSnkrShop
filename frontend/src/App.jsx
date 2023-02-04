@@ -7,6 +7,7 @@ import ProductScreen from "./screens/ProductScreen";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CartScreen from "./screens/CartScreen";
 import SnkrScreen from "./screens/SnkrScreen";
+import LoginScreen from "./screens/LoginScreen";
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +22,8 @@ function App() {
             <Route path=":id" element={<CartScreen />} />
             <Route path="" element={<CartScreen />} />
           </Route>
+
+          <Route path="/users/login" element={<LoginScreen />} exact></Route>
         </Routes>
       </main>
     </BrowserRouter>

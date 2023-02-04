@@ -11,23 +11,19 @@ export const loginAction = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: CYBER_USER_LOGIN_REQUEST });
 
-    const { data } = await axios.post(`/api/${id}/login`);
-
-    dispatch({
-      type: CYBER_USER_LOGIN_SUCCESS,
-      payload: {
-        id,
-        name: data.name,
-        email: data.email,
-        isAdmin: data.isAdmin,
-      },
-    });
-
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
+    const { data } = await axios.post(
+      "/api/users/login",
+      { email, password },
+      config
+    );
+
+    dispatch({ CYBER_USER_LOGIN_SUCCESS, payload: data });
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: CYBER_USER_LOGIN_FAIL,
