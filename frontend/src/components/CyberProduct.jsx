@@ -1,13 +1,7 @@
 import React from "react";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
-import { addItemToCart } from "../actions/cyberCartAction";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
-
 const CyberProduct = ({ cyberProduct }) => {
-  const { id: productId } = useParams();
-
   return (
     <>
       <div className="row__column__wrap">

@@ -144,10 +144,10 @@ const ProductScreen = () => {
             </Link>
           )}
         </button>
-        <Link className="productScreen__down__fav">
+        <span className="productScreen__down__fav">
           {" "}
           <div>FAVORITE</div>
-        </Link>
+        </span>
       </div>
     </>
   );

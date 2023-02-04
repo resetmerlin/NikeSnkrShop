@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import cyberProductModel from "../models/productModel.js";
-import process from "process";
 
 // @desc Fetch all products
 // @route GET /api/products

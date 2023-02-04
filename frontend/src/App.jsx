@@ -17,13 +17,13 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeScreen />} exact></Route>
           <Route path="/snkrs" element={<SnkrScreen />} exact></Route>
-          <Route path="/product/:id" element={<ProductScreen />} exact></Route>
+          <Route path="/product/:id" element={<ProductScreen />}></Route>
           <Route path="/cart">
             <Route path=":id" element={<CartScreen />} />
             <Route path="" element={<CartScreen />} />
           </Route>
 
-          <Route path="/users/login" element={<LoginScreen />} exact></Route>
+          <Route path="/users/login" element={<LoginScreen />}></Route>
         </Routes>
       </main>
     </BrowserRouter>
