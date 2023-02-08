@@ -13,7 +13,7 @@ const cyberOrderSchema = new mongoose.Schema(
         qty: { type: Number, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
-        product: {
+        cyberProduct: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: "cyberProduct",
@@ -21,10 +21,12 @@ const cyberOrderSchema = new mongoose.Schema(
       },
     ],
     shippingAddress: {
-      address: { type: String, required: true },
-      city: { type: String, required: true },
       postalCode: { type: String, required: true },
-      country: { type: String, required: true },
+
+      address: { type: String, required: true },
+      specificAddress: { type: String, required: true },
+
+      referenceItem: { type: String, required: true },
     },
 
     paymentMethod: {
@@ -80,6 +82,6 @@ const cyberOrderSchema = new mongoose.Schema(
   }
 );
 
-const cyberOrderModel = mongoose.model("Order", cyberOrderSchema);
+const Order = mongoose.model("Order", cyberOrderSchema);
 //이 mongoose.model이 db 파일 이름임
-export default cyberOrderModel;
+export default Order;

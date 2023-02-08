@@ -11,7 +11,10 @@
   align-items: center;
   background-color: $primary-color;
   // border-bottom: 1px solid $primary-color-2;
-
+  #header__userName {
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+  }
   &__left {
     display: flex;
   }
@@ -48,21 +51,22 @@
 
   &__right {
     display: flex;
-
+    &__cart {
+      border-radius: 50%;
+    }
     a {
       color: black;
       text-align: center;
       align-items: center;
       display: flex;
       background-color: $bgb-color-white;
-      border-radius: 50%;
+
       border: solid 2px black;
       font-size: 5rem;
       cursor: pointer;
       text-decoration: none;
       width: 5rem;
       height: 5rem;
-      margin-left: 3rem;
       justify-content: center;
       &:active .nav {
         opacity: 1;
@@ -85,7 +89,9 @@
 
       &:checked ~ .nav {
         opacity: 1;
-        width: auto;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
       }
     }
     .bx-cart-alt {
@@ -103,50 +109,51 @@
       font-size: 2.5rem;
       color: $font-color-default;
       cursor: pointer;
-
-      .bxs-down-arrow {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        margin-left: 0.3rem;
-        margin-top: 1rem;
-        cursor: pointer;
-      }
     }
     .nav {
       position: absolute;
+      width: 13rem;
       top: 6%;
-      right: 9.3%;
-      background-color: $font-color-default;
-      border: solid 1px $font-color-black;
+      z-index: 100;
+      right: 15.5%;
+      border: solid 1px black;
       opacity: 0;
-      width: 0;
+      display: none;
 
-      .nav__links {
+      button {
         font-size: 2rem;
-        list-style: none;
-
-        display: flex;
-        flex-direction: column;
-        li {
-          display: flex;
-          margin: 1.2rem 0;
-
-          text-align: center;
-          padding: 0rem 2rem;
-        }
-
-        &__list a {
-          text-decoration: none;
-          color: $font-color-black;
-          transition: all 1.2s ease-out;
-          font-size: 2.5rem;
-          margin-left: 0;
-        }
-        &__list:hover {
-          transform: translateY(-3px);
-        }
+        border: none;
+        width: 100%;
+        font-family: "Heebo";
+        height: 3.6rem;
+        cursor: pointer;
+      }
+      a {
+        font-size: 2rem;
+        border: none;
+        width: 100%;
+        font-family: "Heebo";
+        border-bottom: 1px solid black;
+        height: 3.6rem;
       }
     }
   }
+}
+
+.a__login {
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+}
+
+.bxs-down-arrow {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-left: 0.3rem;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-right: 2rem;
 }

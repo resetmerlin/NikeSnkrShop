@@ -39,3 +39,11 @@ export const removeCartItemAction = (id) => async (dispatch, getState) => {
     JSON.stringify(getState().cyberCart.cyberCartItems)
   );
 };
+
+export const shippingAddressAction = (data) => async (dispatch) => {
+  dispatch({
+    type: CYBER_CART_SAVE_SHIPPING_ADDRESS,
+    payload: data,
+  });
+  localStorage.setItem("shippingAddress", JSON.stringify(data));
+};

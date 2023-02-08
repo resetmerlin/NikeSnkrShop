@@ -5,7 +5,10 @@ import {
   CYBER_CART_SAVE_PAYMENT_METHOD,
 } from "../constants/cartConstants";
 
-export const cyberCartReducers = (state = { cyberCartItems: [] }, action) => {
+export const cyberCartReducers = (
+  state = { cyberCartItems: [], shippingAddress: {} },
+  action
+) => {
   switch (action.type) {
     case CYBER_CART_ADD_ITEM:
       const item = action.payload;
@@ -34,7 +37,11 @@ export const cyberCartReducers = (state = { cyberCartItems: [] }, action) => {
           (x) => x.cyberProduct !== action.payload
         ),
       };
-
+    case CYBER_CART_SAVE_SHIPPING_ADDRESS:
+      return {
+        ...state,
+        shippingAddress: action.payload,
+      };
     default:
       return state;
   }

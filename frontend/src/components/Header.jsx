@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Link, useLocation } from "react-router-dom";
-
+import { logoutAction } from "../actions/cyberUserAction";
 const Header = () => {
   const location = useLocation();
-
+  const dispatch = useDispatch();
   const [loginHeader, setLoginHeader] = useState("");
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
     if (location.pathname == "/users/login") {
       setLoginHeader("none");
@@ -12,7 +17,9 @@ const Header = () => {
       setLoginHeader("");
     }
   }, [location.pathname, setLoginHeader]);
-
+  const logoutHandler = () => {
+    dispatch(logoutAction());
+  };
   return (
     <header className="header" style={{ display: `${loginHeader}` }}>
       <div className="header__left">
@@ -33,29 +40,33 @@ const Header = () => {
         </Link>
       </div>
       <div className="header__right">
-        <Link to="/cart">
-          <i className="bx bx-cart-alt"></i>
-        </Link>
         <input
           type="checkbox"
           className="navigation__checkbox"
           id="navi-toggle"
         />
 
-        <label htmlFor="navi-toggle" className="toggle-button">
+        {userInfo ? (
+          <>
+            <label htmlFor="navi-toggle" className="toggle-button">
+              <span id="header__userName">{userInfo.name}</span>
+              <i className="bx bxs-down-arrow"></i>
+            </label>
+
+            <nav className="nav">
+              <Link to="/profile">profile</Link>
+              <button onClick={logoutHandler}>Logout</button>
+            </nav>
+          </>
+        ) : (
           <Link to="/users/login" className="a__login">
             <i className="bx bx-log-in logo"></i>
           </Link>
-          <i className="bx bxs-down-arrow"></i>
-        </label>
+        )}
 
-        <nav className="nav">
-          <ul className="nav__links">
-            <li className="nav__links__list">
-              <Link to="/register">register</Link>
-            </li>
-          </ul>
-        </nav>
+        <Link to="/cart" className="header__right__cart">
+          <i className="bx bx-cart-alt"></i>
+        </Link>
       </div>
     </header>
   );

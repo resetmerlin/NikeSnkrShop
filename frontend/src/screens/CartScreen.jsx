@@ -1,38 +1,73 @@
 import CartList from "../components/CartList";
 import React, { useState, useEffect } from "react";
-import {
-  useParams,
-  Link,
-  useSearchParams,
-  useLocation,
-} from "react-router-dom";
+
+import { useParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
 import { useNavigate } from "react-router";
 
 import { addItemToCart } from "../actions/cyberCartAction";
+import { createOrderAction } from "../actions/cyberOrderAction";
 const CartScreen = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-
   const location = useLocation().search;
-
   const qty = new URLSearchParams(location).get("qty");
 
+  const checkLogin = useSelector((state) => state.userLogin);
   const cyberCart = useSelector((state) => state.cyberCart);
+  const { userInfo } = checkLogin;
+  const date = new Date();
 
-  const { cyberCartItems } = cyberCart;
+  const { cyberCartItems, shippingAddress } = cyberCart;
+
+  const [paymentMethod, setPaymentMethod] = useState("naverpay");
+
+  const taxPrice = 5;
+  const shippingPrice = 3;
+  const itemsPrice = cyberCartItems
+    .reduce((acc, item) => acc + Number(item.qty) * Number(item.price), 0)
+    .toFixed(1);
+  const totalPrice = itemsPrice - taxPrice - shippingPrice;
+  const createOrder = useSelector((state) => state.createOrder);
+
+  const { order, success, loading } = createOrder;
+  console.log(order);
 
   useEffect(() => {
-    if (id) {
-      dispatch(addItemToCart(id, qty));
+    if (userInfo) {
+      if (id) {
+        dispatch(addItemToCart(id, qty));
+      }
+    } else {
+      navigate("/users/login");
     }
   }, [dispatch, id, qty]);
   let navigate = useNavigate();
 
-  const checkoutHandler = () => {
-    navigate(`/login?redirect=${"/shipping"}`);
+  const checkoutHandler = (e) => {
+    e.preventDefault();
+    // navigate(`/login?redirect=${"/shipping"}`);
+    dispatch(
+      createOrderAction({
+        orderItems: cyberCart.cyberCartItems,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice,
+        taxPrice,
+        shippingPrice,
+        totalPrice,
+      })
+    );
+
+    navigate("/order");
   };
+  const currentDate = new Intl.DateTimeFormat("en-kr", {
+    dateStyle: "full",
+  });
+  const paymentMethodHandler = (e) => {
+    setPaymentMethod(e.target.value);
+  };
+
   return (
     <>
       <div className="Cart-Screen">
@@ -52,11 +87,25 @@ const CartScreen = () => {
             ))}
           </div>
 
-          <div className="Cart-Screen__info__delivery">
-            <span className="Cart-Screen__info__delivery__title title-m">
-              Delivery
-            </span>
-            <div className="Cart-Screen__info__delivery__price"></div>
+          <div className="Cart-Screen__info__wrap__down">
+            <span className="title-m">Address</span>
+            <div className=" Cart-Screen__side-title">
+              <span> Postal code: {shippingAddress.postalCode}</span>
+              <span> Address: {shippingAddress.address}</span>
+              <span>
+                Specific Address:
+                {shippingAddress.specificAddress}
+              </span>
+              <span>Reference Item: {shippingAddress.referenceItem}</span>
+            </div>
+            <button
+              className="Cart-Screen__button"
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
+              Change Address
+            </button>
           </div>
         </div>
 
@@ -64,14 +113,18 @@ const CartScreen = () => {
           <div className="Cart-Screen__side-bar__info">
             <div className="Cart-Screen__side-bar__info__wrap">
               <span className="Cart-Screen__side-bar__address-specific">
-                416 W 8th St
+                {shippingAddress.address}, {shippingAddress.specificAddress},{" "}
+                {shippingAddress.referenceItem}
               </span>
               <span className="Cart-Screen__side-bar__address-city">
-                Los Angeles CA USA
+                {shippingAddress.postalCode}
               </span>
             </div>
-            <span className="Cart-Screen__side-bar__date">
-              Date: 2023-01-24
+            <span
+              className="Cart-Screen__side-bar__date"
+              style={{ fontSize: "1.5rem" }}
+            >
+              Date: {currentDate.format(date)}
             </span>
           </div>
 
@@ -79,37 +132,39 @@ const CartScreen = () => {
             <span className="Cart-Screen__side-bar__summary__title title-m">
               Order summary
             </span>
-            <span className="Cart-Screen__side-bar__summary__subtotal">
+            <span className="Cart-Screen__side-bar__summary__small-title">
               <span>SUBTOTAL</span>(
               {cyberCartItems.reduce((acc, item) => acc + Number(item.qty), 0)})
               Items
             </span>
-            <span className="Cart-Screen__side-bar__summary__shipping">
-              <span>SHIPPING</span>
-              $3
-            </span>
-            <span className="Cart-Screen__side-bar__summary__tax">
-              <span>TAX</span>
-              $5
-            </span>
             <span className="Cart-Screen__side-bar__summary__total-amount title-s">
-              <span> Total</span>
-              {cyberCartItems
-                .reduce(
-                  (acc, item) => acc + Number(item.qty) * Number(item.price),
-                  0
-                )
-                .toFixed(1)}{" "}
-              won
+              <span>Total Item Prices</span>${itemsPrice}
+            </span>
+            <span className="Cart-Screen__side-bar__summary__small-title">
+              <span>SHIPPING</span>${shippingPrice}
+            </span>
+            <span className="Cart-Screen__side-bar__summary__small-title">
+              <span>TAX</span>${taxPrice}
             </span>
 
-            <button
-              className="Cart-Screen__side-bar__summary__check-out"
-              type="button"
-              onClick={checkoutHandler}
-            >
-              Proceed To Checkout
-            </button>
+            <span className="Cart-Screen__side-bar__summary__total-amount title-s">
+              <span> Total</span>${totalPrice}
+            </span>
+            <form onSubmit={checkoutHandler}>
+              <span className="Cart-Screen__side-bar__summary__small-title">
+                <span>Payment method</span>
+                <select onChange={paymentMethodHandler}>
+                  <option value="naverpay">Naver pay</option>
+                  <option value="paypal">Paypal</option>
+                </select>
+              </span>
+              <button
+                className="Cart-Screen__side-bar__summary__check-out"
+                type="submit"
+              >
+                Proceed To Checkout
+              </button>
+            </form>
           </div>
         </div>
       </div>

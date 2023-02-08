@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import LoginForm from "../components/Form";
-const LoginScreen = () => {
+import RegisterForm from "../components/RegisterForm";
+const RegisterScreen = () => {
   return (
     <div className="loginScreen">
       <div className="loginScreen__left">
@@ -10,11 +10,11 @@ const LoginScreen = () => {
           Nike Snkr shop
         </Link>
 
-        <LoginForm />
+        <RegisterForm />
       </div>
       <div className="loginScreen__right"></div>
     </div>
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

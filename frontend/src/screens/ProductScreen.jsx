@@ -24,6 +24,10 @@ const ProductScreen = () => {
   const { loading, error, cyberProduct } = cyberProductDetails;
   const cyberProductList = useSelector((state) => state.cyberProductLists);
   const { cyberProducts } = cyberProductList;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const addToCartHandler = () => {
     navigate(`/cart/${id}?qty=${qty}`);
   };
@@ -111,7 +115,7 @@ const ProductScreen = () => {
       <div className="productScreen__right">
         <div className="productScreen__right__user">
           <i className="bx bxs-user-circle"></i>
-          <span>User name</span>
+          {userInfo ? <span>{userInfo.name}</span> : <span>User name</span>}
         </div>
         <div className="productScreen__right__wrap">
           {cyberProducts.map((product) => {

@@ -83,6 +83,14 @@
       display: flex;
       justify-content: flex-start;
     }
+
+    &__register {
+      text-decoration: none;
+      font-size: 2rem;
+      width: 50rem;
+      height: 3rem;
+      color: #8d8c8c;
+    }
   }
 
   &__right {

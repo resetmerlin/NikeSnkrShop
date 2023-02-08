@@ -6,23 +6,36 @@ import {
   cyberProductDetailReducers,
 } from "./reducers/cyberProductReducers";
 import { cyberCartReducers } from "./reducers/cyberCartReducers";
-import { cyberUserLoginReducers } from "./reducers/cyberUserReducer";
+import {
+  cyberUserLoginReducers,
+  cyberUserRegisterReducers,
+  cyberUserDetailsReducers,
+  cyberUserUpdateReducers,
+} from "./reducers/cyberUserReducer";
+import { cyberCreateOrderReducers } from "./reducers/cyberOrderReducers";
 const reducer = combineReducers({
   cyberProductLists: cyberProductReducers,
   cyberProductDetails: cyberProductDetailReducers,
   cyberCart: cyberCartReducers,
-  cyberLogin: cyberUserLoginReducers,
+  userLogin: cyberUserLoginReducers,
+  userRegister: cyberUserRegisterReducers,
+  userDetails: cyberUserDetailsReducers,
+  userUpdateProfile: cyberUserUpdateReducers,
+  createOrder: cyberCreateOrderReducers,
 });
 const cartItemsFromStorage = localStorage.getItem("cyberCartItems")
   ? JSON.parse(localStorage.getItem("cyberCartItems"))
   : [];
-
+const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
+  ? JSON.parse(localStorage.getItem("shippingAddress"))
+  : [];
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 const initialState = {
   cyberCart: {
     cyberCartItems: cartItemsFromStorage,
+    shippingAddress: shippingAddressFromStorage,
   },
   userLogin: {
     userInfo: userInfoFromStorage,
