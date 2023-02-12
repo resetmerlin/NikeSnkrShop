@@ -8,13 +8,13 @@ html {
   //1rem = 10px; 10/16 = 62.5%
 
   @include respond(phone) {
-    font-size: 35.25%; //600px
+    font-size: 33.25%; //600px
   }
   @include respond(tab-port) {
     font-size: 35.25%; //900px
   }
   @include respond(tab-land) {
-    font-size: 35.25%; //1200px
+    font-size: 37.25%; //1200px
   }
   @include respond(big-desktop) {
     font-size: 62.5%; //1800px

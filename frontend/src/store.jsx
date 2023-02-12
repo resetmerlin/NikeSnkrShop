@@ -12,7 +12,12 @@ import {
   cyberUserDetailsReducers,
   cyberUserUpdateReducers,
 } from "./reducers/cyberUserReducer";
-import { cyberCreateOrderReducers } from "./reducers/cyberOrderReducers";
+import {
+  cyberCreateOrderReducers,
+  cybergetOrderDetailsReducers,
+  cyberOrderPayReducers,
+  cyberMyOrderListReducers,
+} from "./reducers/cyberOrderReducers";
 const reducer = combineReducers({
   cyberProductLists: cyberProductReducers,
   cyberProductDetails: cyberProductDetailReducers,
@@ -22,6 +27,9 @@ const reducer = combineReducers({
   userDetails: cyberUserDetailsReducers,
   userUpdateProfile: cyberUserUpdateReducers,
   createOrder: cyberCreateOrderReducers,
+  orderDetails: cybergetOrderDetailsReducers,
+  orderPay: cyberOrderPayReducers,
+  myOrder: cyberMyOrderListReducers,
 });
 const cartItemsFromStorage = localStorage.getItem("cyberCartItems")
   ? JSON.parse(localStorage.getItem("cyberCartItems"))

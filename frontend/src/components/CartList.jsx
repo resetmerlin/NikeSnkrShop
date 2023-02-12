@@ -12,6 +12,7 @@ const CartList = ({ CartValue }) => {
   const removeItemFromCart = (id) => {
     dispatch(removeCartItemAction(id));
   };
+
   return (
     <>
       <div className="Cart-Screen__info__products ">

@@ -7,6 +7,8 @@ const cyberOrderSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
+    email: { type: String, required: true },
+    name: { type: String, required: true },
     orderItems: [
       {
         name: { type: String, required: true },

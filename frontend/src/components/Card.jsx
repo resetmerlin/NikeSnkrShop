@@ -23,7 +23,7 @@ const Card = ({ product }) => {
                 <i className="bx bxs-star"></i>
                 <i className="bx bxs-star"></i>
               </div>
-              <div className="Card__price">{`${product.price}`}</div>
+              <div className="Card__price">$ {product.price}</div>
               <i className="bx bx-plus"></i>
             </div>
           </Link>
@@ -48,7 +48,7 @@ const Card = ({ product }) => {
                 <i className="bx bxs-star"></i>
                 <i className="bx bxs-star"></i>
               </div>
-              <div className="Card__price">{`${product.price}`}</div>
+              <div className="Card__price">$ {product.price}</div>
               <i className="bx bx-plus"></i>
             </div>
           </Link>
@@ -73,7 +73,7 @@ const Card = ({ product }) => {
                 <i className="bx bxs-star"></i>
                 <i className="bx bxs-star"></i>
               </div>
-              <div className="Card__price">{`${product.price}`}</div>
+              <div className="Card__price">$ {product.price}</div>
               <i className="bx bx-plus"></i>
             </div>
           </Link>
@@ -93,7 +93,7 @@ const Card = ({ product }) => {
                 <i className="bx bxs-star"></i>
                 <i className="bx bxs-star"></i>
               </div>
-              <div className="Card__price">{`${product.price}`}</div>
+              <div className="Card__price">$ {product.price}</div>
               <i className="bx bx-plus"></i>
             </div>
           </Link>

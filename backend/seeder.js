@@ -3,7 +3,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import cyberUsersData from "./data/cyberUsers.js";
 import cyberProducts from "./data/cyberProducts.js";
-import cyberUserModel from "./models/userModel.js";
+import User from "./models/userModel.js";
 import cyberProductModel from "./models/productModel.js";
 import cyberOrderModel from "./models/orderModel.js";
 import connectDatabase from "./config/database.js";
@@ -16,9 +16,9 @@ const importDataFile = async () => {
   try {
     await cyberOrderModel.deleteMany();
     await cyberProductModel.deleteMany();
-    await cyberUserModel.deleteMany();
+    await User.deleteMany();
 
-    const createdCyberUsers = await cyberUserModel.insertMany(cyberUsersData);
+    const createdCyberUsers = await User.insertMany(cyberUsersData);
 
     const cyberAdmin = createdCyberUsers[0]._id;
     // const cyberAdminEmail = createdCyberUsers[0].email;
@@ -43,7 +43,7 @@ const destroyDataFile = async () => {
   try {
     await cyberOrderModel.deleteMany();
     await cyberProductModel.deleteMany();
-    await cyberUserModel.deleteMany();
+    await User.deleteMany();
 
     console.log(`Data destroyed`.green.inverse);
     process.exit();

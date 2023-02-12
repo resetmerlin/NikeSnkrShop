@@ -60,9 +60,11 @@ const HomeScreen = () => {
           GET IT NOW
         </span>
       </div>
-      {CardList.map((item) => {
-        return <Card key={item._id} product={item} />;
-      })}
+      <div className="HomeScreen__down">
+        {CardList.map((item) => {
+          return <Card key={item._id} product={item} />;
+        })}
+      </div>
     </>
   );
 };

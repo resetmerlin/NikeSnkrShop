@@ -8,11 +8,8 @@ import SideCategory from "../components/SideCategory";
 
 const categorySortOptions = [
   "Sort by: Default",
-
   "Price low to high",
-
   "Price high to low",
-
   "Order by rating",
 ];
 

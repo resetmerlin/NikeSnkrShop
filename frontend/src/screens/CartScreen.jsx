@@ -8,19 +8,22 @@ import { useNavigate } from "react-router";
 import { addItemToCart } from "../actions/cyberCartAction";
 import { createOrderAction } from "../actions/cyberOrderAction";
 const CartScreen = () => {
+  //React hook
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const navigate = useNavigate();
+
   const location = useLocation().search;
+  const { id } = useParams();
   const qty = new URLSearchParams(location).get("qty");
 
   const checkLogin = useSelector((state) => state.userLogin);
   const cyberCart = useSelector((state) => state.cyberCart);
+  const createOrder = useSelector((state) => state.createOrder);
+
   const { userInfo } = checkLogin;
-  const date = new Date();
 
   const { cyberCartItems, shippingAddress } = cyberCart;
-
-  const [paymentMethod, setPaymentMethod] = useState("naverpay");
+  const { order, success, loading } = createOrder;
 
   const taxPrice = 5;
   const shippingPrice = 3;
@@ -28,10 +31,11 @@ const CartScreen = () => {
     .reduce((acc, item) => acc + Number(item.qty) * Number(item.price), 0)
     .toFixed(1);
   const totalPrice = itemsPrice - taxPrice - shippingPrice;
-  const createOrder = useSelector((state) => state.createOrder);
-
-  const { order, success, loading } = createOrder;
-  console.log(order);
+  const paymentMethod = "paypal";
+  const date = new Date();
+  const currentDate = new Intl.DateTimeFormat("en-kr", {
+    dateStyle: "full",
+  });
 
   useEffect(() => {
     if (userInfo) {
@@ -42,11 +46,11 @@ const CartScreen = () => {
       navigate("/users/login");
     }
   }, [dispatch, id, qty]);
-  let navigate = useNavigate();
+  //Buttons
 
   const checkoutHandler = (e) => {
     e.preventDefault();
-    // navigate(`/login?redirect=${"/shipping"}`);
+
     dispatch(
       createOrderAction({
         orderItems: cyberCart.cyberCartItems,
@@ -56,16 +60,13 @@ const CartScreen = () => {
         taxPrice,
         shippingPrice,
         totalPrice,
+        email: userInfo.email,
+        name: userInfo.name,
       })
     );
-
-    navigate("/order");
-  };
-  const currentDate = new Intl.DateTimeFormat("en-kr", {
-    dateStyle: "full",
-  });
-  const paymentMethodHandler = (e) => {
-    setPaymentMethod(e.target.value);
+    if (success) {
+      navigate(`/order/${order._id}`);
+    }
   };
 
   return (
@@ -153,10 +154,7 @@ const CartScreen = () => {
             <form onSubmit={checkoutHandler}>
               <span className="Cart-Screen__side-bar__summary__small-title">
                 <span>Payment method</span>
-                <select onChange={paymentMethodHandler}>
-                  <option value="naverpay">Naver pay</option>
-                  <option value="paypal">Paypal</option>
-                </select>
+                <span>{paymentMethod}</span>
               </span>
               <button
                 className="Cart-Screen__side-bar__summary__check-out"

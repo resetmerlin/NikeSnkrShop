@@ -9,8 +9,12 @@
       transform: translate(-50%, -50%);
 
       font-size: 75rem;
-      color: $primary-color-dark;
+      color: #e5e5e5;
       letter-spacing: -1px;
+
+      @include respond(tab-port) {
+        font-size: 62rem;
+      }
     }
   }
   &__left {
@@ -18,9 +22,12 @@
     top: 10%;
     left: 18%;
     width: 50rem;
-    height: 56rem;
+    height: 72rem;
     z-index: 13;
-
+    @include respond(tab-port) {
+      top: 10%;
+      left: 9%;
+    }
     &__big-text {
       font-family: "Goldman", cursive;
       display: block;
@@ -45,6 +52,13 @@
     height: 100rem;
     z-index: 10;
     transform: translate(-50%, -50%);
+    @include respond(tab-port) {
+      width: 84rem;
+      height: 80rem;
+      z-index: 1000;
+      left: 59%;
+      z-index: 1000;
+    }
   }
 
   &__right {
@@ -57,7 +71,12 @@
     display: block;
     font-family: "Oswald", sans-serif;
     z-index: 13;
-
+    @include respond(tab-port) {
+      top: 49%;
+      right: 9.1%;
+      width: 33rem;
+      height: 28rem;
+    }
     &__product-name {
       color: $font-primary-2;
       font-size: 5rem;
@@ -77,11 +96,19 @@
   }
   &__down {
     position: absolute;
-    top: 80%;
-    left: 30%;
-    height: 10%;
+    top: 73%;
+    left: 13%;
+    /* width: 190rem; */
+    width: 250rem;
+    height: 33rem;
     display: flex;
     text-transform: uppercase;
     font-family: "Oswald", sans-serif;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

@@ -11,19 +11,27 @@ const ProfileScreen = () => {
   const navigate = useNavigate();
 
   const userInformation = useSelector((state) => state.userLogin);
+  const { userInfo } = userInformation;
+
   const userDetails = useSelector((state) => state.userDetails);
+  const { loading, error, user } = userDetails;
+
+  const myOrder = useSelector((state) => state.myOrder);
+  const { loading: orderLoading, error: orderError, orders } = myOrder;
+
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
   const cart = useSelector((state) => state.cyberCart);
   const { shippingAddress } = cart;
-  const { userInfo } = userInformation;
-  const { loading, error, user } = userDetails;
-  const { success } = userUpdateProfile;
+
   const [email, setEmail] = useState(userInfo.email);
   const [password, setPassword] = useState(userInfo.password);
   const [name, setName] = useState(userInfo.name);
   const [confirmPassword, setconfirmPassword] = useState("");
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [address, setAddress] = useState(shippingAddress.address);
+
   const [specificAddress, setSpecificAddress] = useState(
     shippingAddress.specificAddress
   );
@@ -39,7 +47,7 @@ const ProfileScreen = () => {
         setEmail(user.email);
       }
     }
-  }, [dispatch]);
+  }, [dispatch, userInfo]);
 
   const changeProfileHandler = (e) => {
     e.preventDefault();
@@ -104,6 +112,7 @@ const ProfileScreen = () => {
       })
     );
   };
+
   return (
     <div className="profileScreen__wrap">
       <span className="profileScreen__title">Profile</span>
@@ -160,7 +169,7 @@ const ProfileScreen = () => {
 
       <div className="profileScreen__wrap__right">
         <span className="profileScreen__side-title">User address:</span>
-        <form>
+        <form onSubmit={addressSaveHandler}>
           <button
             onClick={addressHandle}
             className="profileScreen__button--find"
@@ -175,6 +184,7 @@ const ProfileScreen = () => {
               name="PostalCode"
               placeholder="우편번호"
               value={postalCode}
+              required
               onChange={(e) => setPostalCode(e.target.value)}
             />
           </div>
@@ -187,6 +197,7 @@ const ProfileScreen = () => {
               name="address"
               placeholder="주소"
               value={address}
+              required
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
@@ -198,6 +209,7 @@ const ProfileScreen = () => {
               id="sample6_detailAddress"
               name="specificAddress"
               placeholder="상세주소"
+              required
               value={specificAddress}
               onChange={(e) => setSpecificAddress(e.target.value)}
             />
@@ -211,12 +223,10 @@ const ProfileScreen = () => {
               placeholder="참고항목"
               value={referenceItem}
               onChange={(e) => setReferenceItem(e.target.value)}
+              required
             />
           </div>
-          <button
-            onClick={addressSaveHandler}
-            className="profileScreen__button"
-          >
+          <button className="profileScreen__button" type="submit">
             Update Address
           </button>
         </form>

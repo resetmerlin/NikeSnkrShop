@@ -1,40 +1,54 @@
-import CartList from "../components/CartList";
+import OrderList from "../components/OrderList";
 import React, { useState, useEffect } from "react";
-
+import axios from "axios";
 import { useParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-
-import { addItemToCart } from "../actions/cyberCartAction";
-import { createOrderAction } from "../actions/cyberOrderAction";
-
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import PaypalButton from "../components/paypalButton";
+import { getOrderDetailsAction } from "../actions/cyberOrderAction";
+import Loading from "../components/Loading";
+import { CYBER_ORDER_PAY_RESET } from "../constants/orderConstants";
 const OrderScreen = () => {
+  const { id: orderId } = useParams();
+  //{id: orderId} 형식 공부 필요
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const location = useLocation().search;
-  const qty = new URLSearchParams(location).get("qty");
 
-  const checkLogin = useSelector((state) => state.userLogin);
-  const cyberCart = useSelector((state) => state.cyberCart);
-  const { userInfo } = checkLogin;
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const orderPay = useSelector((state) => state.orderPay);
+
+  const { order, loading, error } = orderDetails;
+  const { loading: loadingPay, success: successPay } = orderPay;
+  const [clientId, setClientId] = useState(null);
+  const [paypalPaid, setPaypalPaid] = useState(false);
+
+  function paypalCheck(paypalPaid) {
+    if (paypalPaid) {
+      setPaypalPaid(true);
+      console.log(successPay);
+    }
+  }
+  useEffect(() => {
+    const addPayPalScript = async () => {
+      const { data: clientId } = await axios.get(`/api/config/paypal`);
+      setClientId(clientId);
+    };
+    if (!order || order._id !== orderId) {
+      if (!order || paypalPaid == false) {
+        dispatch(getOrderDetailsAction(orderId));
+        addPayPalScript();
+      }
+    }
+  }, [order, orderId, successPay, dispatch, paypalPaid]);
+
   const date = new Date();
-
-  const { cyberCartItems, shippingAddress } = cyberCart;
-
-  const [paymentMethod, setPaymentMethod] = useState("naverpay");
   const currentDate = new Intl.DateTimeFormat("en-kr", {
     dateStyle: "full",
   });
-  const taxPrice = 5;
-  const shippingPrice = 3;
-  const itemsPrice = cyberCartItems
-    .reduce((acc, item) => acc + Number(item.qty) * Number(item.price), 0)
-    .toFixed(1);
-  const totalPrice = itemsPrice - taxPrice - shippingPrice;
-  const createOrder = useSelector((state) => state.createOrder);
-
-  const { order, success, loading } = createOrder;
-  return (
+  const currency = "USD";
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="orderScreen">
       <div className="orderScreen__info">
         <span className="orderScreen__title">Order Information</span>
@@ -42,9 +56,8 @@ const OrderScreen = () => {
         <div className="orderScreen__info__wrap">
           <span className="orderScreen__info__title">Order Items</span>
           <div className="orderScreen__info__product-wrap">
-            {" "}
-            {cyberCartItems.map((cartItems) => (
-              <CartList key={cartItems._id} CartValue={cartItems}></CartList>
+            {order.orderItems.map((ordertItem) => (
+              <OrderList key={ordertItem._id} value={ordertItem}></OrderList>
             ))}
           </div>
           <div className="orderScreen__info__small-wrap">
@@ -52,14 +65,12 @@ const OrderScreen = () => {
             <div className="orderScreen__info__default-wrap">
               <span className="orderScreen__info__side-info">Email</span>
               <span className="orderScreen__info__main-info">
-                {userInfo.email}
+                {order.email}
               </span>
               <span className="orderScreen__info__side-info">Name</span>
-              <span className="orderScreen__info__main-info">
-                {userInfo.name}
-              </span>
+              <span className="orderScreen__info__main-info">{order.name}</span>
               <span className="orderScreen__info__side-info">Order Id</span>
-              <span className="orderScreen__info__main-info">id</span>
+              <span className="orderScreen__info__main-info">{order._id}</span>
             </div>
           </div>
 
@@ -68,24 +79,24 @@ const OrderScreen = () => {
             <div className="orderScreen__info__default-wrap">
               <span className="orderScreen__info__side-info">Postal code</span>
               <span className="orderScreen__info__main-info">
-                {shippingAddress.postalCode}
+                {order.shippingAddress.postalCode}
               </span>
               <span className="orderScreen__info__side-info">Address</span>
               <span className="orderScreen__info__main-info">
-                {shippingAddress.address}
+                {order.shippingAddress.address}
               </span>
               <span className="orderScreen__info__side-info">
                 Specific Address
               </span>
               <span className="orderScreen__info__main-info">
-                {shippingAddress.specificAddress}
+                {order.shippingAddress.specificAddress}
               </span>
 
               <span className="orderScreen__info__side-info">
                 Reference Item
               </span>
               <span className="orderScreen__info__main-info">
-                {shippingAddress.referenceItem}
+                {order.shippingAddress.referenceItem}
               </span>
             </div>
           </div>
@@ -97,7 +108,7 @@ const OrderScreen = () => {
                 Payment method
               </span>
               <span className="orderScreen__info__main-info">
-                {paymentMethod}
+                {order.paymentMethod}
               </span>
             </div>
           </div>
@@ -113,11 +124,12 @@ const OrderScreen = () => {
             <div className="Cart-Screen__side-bar__info">
               <div className="Cart-Screen__side-bar__info__wrap">
                 <span className="Cart-Screen__side-bar__address-specific">
-                  {shippingAddress.address}, {shippingAddress.specificAddress},{" "}
-                  {shippingAddress.referenceItem}
+                  {order.shippingAddress.address},{" "}
+                  {order.shippingAddress.specificAddress},{" "}
+                  {order.shippingAddress.referenceItem}
                 </span>
                 <span className="Cart-Screen__side-bar__address-city">
-                  {shippingAddress.postalCode}
+                  {order.shippingAddress.postalCode}
                 </span>
               </div>
               <span
@@ -131,25 +143,64 @@ const OrderScreen = () => {
             <div className="Cart-Screen__side-bar__summary">
               <span className="Cart-Screen__side-bar__summary__small-title">
                 <span>SUBTOTAL</span>(
-                {cyberCartItems.reduce(
+                {order.orderItems.reduce(
                   (acc, item) => acc + Number(item.qty),
                   0
                 )}
                 ) Items
               </span>
               <span className="Cart-Screen__side-bar__summary__total-amount title-s">
-                <span>Total Item Prices</span>${itemsPrice}
+                <span>Total Item Prices</span>${order.itemsPrice}
               </span>
               <span className="Cart-Screen__side-bar__summary__small-title">
-                <span>SHIPPING</span>${shippingPrice}
+                <span>SHIPPING</span>${order.shippingPrice}
               </span>
               <span className="Cart-Screen__side-bar__summary__small-title">
-                <span>TAX</span>${taxPrice}
+                <span>TAX</span>${order.taxPrice}
               </span>
 
               <span className="Cart-Screen__side-bar__summary__total-amount title-s">
-                <span> Total</span>${totalPrice}
+                <span> Total</span>${order.totalPrice}
               </span>
+
+              {!order ? (
+                <span>Wait for Order details</span>
+              ) : (
+                <>
+                  <span
+                    className="orderScreen__info__title"
+                    style={{ marginTop: "6rem" }}
+                  >
+                    Checkout
+                  </span>
+                  <span className="Cart-Screen__side-bar__summary__total-amount title-s">
+                    <span>Paid</span>
+
+                    {!paypalPaid ? "Not paid" : "Purchased Successfully"}
+                  </span>
+                  {!paypalPaid ? (
+                    <div className="orderScreen__payment">
+                      <PayPalScriptProvider
+                        options={{
+                          "client-id": `${clientId}`,
+                          components: "buttons",
+                          currency: "USD",
+                        }}
+                      >
+                        <PaypalButton
+                          currency={currency}
+                          showSpinner={false}
+                          totalPrice={order.totalPrice}
+                          paymentCheck={paypalCheck}
+                          orderId={orderId}
+                        />
+                      </PayPalScriptProvider>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
