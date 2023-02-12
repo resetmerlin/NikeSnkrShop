@@ -1,7 +1,10 @@
 import express from "express";
+import path from "path";
 //require는 NodeJS에서 사용되고 있는 CommonJS 키워드
 import colors from "colors";
 import dotenv from "dotenv";
+import morgan from "morgan";
+
 import connectDatabase from "./config/database.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -15,10 +18,9 @@ const app = express();
 
 app.use(express.json());
 //this allow us to accept json data in the body
-app.get("/", (req, res) => {
-  res.send("APi is running");
-});
-
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 app.get("/snkrs", (req, res) => {});
 
 app.use("/api/products", productRoutes);
@@ -28,6 +30,20 @@ app.use("/api/orders", orderRoutes);
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
 });
+
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("Api is running...");
+  });
+}
 //not found handler
 app.use(notFound);
 //error middleware

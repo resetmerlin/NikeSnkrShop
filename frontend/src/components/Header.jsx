@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Link, useLocation } from "react-router-dom";
+import { Route, Link, useLocation, useNavigate } from "react-router-dom";
 import { logoutAction } from "../actions/cyberUserAction";
 const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loginHeader, setLoginHeader] = useState("");
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -19,6 +20,7 @@ const Header = () => {
   }, [location.pathname, setLoginHeader]);
   const logoutHandler = () => {
     dispatch(logoutAction());
+    navigate("/");
   };
   return (
     <header className="header" style={{ display: `${loginHeader}` }}>

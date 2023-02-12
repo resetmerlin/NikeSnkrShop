@@ -98,7 +98,6 @@
     position: absolute;
     top: 73%;
     left: 13%;
-    /* width: 190rem; */
     width: 250rem;
     height: 33rem;
     display: flex;
@@ -106,7 +105,11 @@
     font-family: "Oswald", sans-serif;
     overflow-x: auto;
     overflow-y: hidden;
+    flex-wrap: nowrap;
 
+    @include respond(tab-port) {
+      width: 113rem;
+    }
     &::-webkit-scrollbar {
       display: none;
     }
