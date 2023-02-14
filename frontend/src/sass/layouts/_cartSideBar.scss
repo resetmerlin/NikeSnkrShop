@@ -1,13 +1,39 @@
 .Cart-Screen {
   &__side-bar {
     position: absolute;
-    width: 25%;
-    height: 60%;
+    width: 43rem;
+    height: 52rem;
     top: 8%;
     right: 10%;
     padding: 3rem;
-    box-shadow: 0px 0px 20px 4px #afafaf;
+    box-shadow: 0 0 20px 4px #afafaf;
     font-family: "Noto Sans KR", sans-serif;
+
+    @media (max-width: 112.5em) {
+      position: absolute;
+      width: 39rem;
+      height: 50rem;
+      top: 9%;
+      right: 5%;
+    }
+
+    @media (max-width: 90em) {
+      position: absolute;
+      width: 32rem;
+      height: 48rem;
+      top: 9%;
+      right: 5%;
+      padding: 3rem;
+    }
+
+    @media (max-width: 75em) {
+      position: absolute;
+      width: 32rem;
+      height: 44rem;
+      top: 8%;
+      right: 2%;
+      padding: 2rem;
+    }
     &__info {
       display: flex;
       justify-content: space-between;
@@ -18,30 +44,51 @@
     }
     &__info__wrap span {
       color: $font-color-black;
-      font-size: 2rem;
+      font-size: 1.2rem;
       display: block;
     }
 
     &__summary {
       display: flex;
       flex-direction: column;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 77%;
+
+      @media (max-width: 75em) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 77%;
+      }
+
       &__title {
         width: 100%;
         margin-top: 3rem;
-        height: 8rem;
-        background-color: rgb(240, 240, 240);
-
+        height: 6rem;
+        background-color: #f0f0f0;
         text-align: center;
         align-items: center;
         display: flex;
         justify-content: center;
+        font-size: 2.3rem !important;
+
+        @media (max-width: 75em) {
+          font-size: 2rem !important;
+        }
       }
 
       &__small-title {
         display: flex;
         justify-content: space-between;
-        font-size: 2rem;
-        margin: 2rem 0;
+        font-size: 1.2rem;
+        margin: 1rem 0;
+
+        @media (max-width: 75em) {
+          font-size: 1.2rem;
+          margin: 0.5rem 0;
+        }
       }
 
       &__total-amount {
@@ -50,19 +97,32 @@
         padding: 2rem 0;
         border-top: 1px solid rgb(201, 201, 201);
         border-bottom: 1px solid rgb(201, 201, 201);
+        font-size: 2rem !important;
+
+        @media (max-width: 75em) {
+          font-size: 1.5rem !important;
+        }
       }
       &__check-out {
         position: absolute;
-        left: 10%;
-        top: 86%;
-        width: 80%;
-        height: 6rem;
-        font-size: 2.2rem;
-        background-color: black;
-        color: white;
+        left: 15%;
+        top: 85%;
+        width: 69%;
+        height: 4.3rem;
+        font-size: 1.6rem;
+        background-color: #000;
+        color: #fff;
         border-radius: 8px;
         cursor: pointer;
         transition: all 0.2s ease-in;
+
+        @media (max-width: 75em) {
+          left: 15%;
+          top: 85%;
+
+          width: 69%;
+          height: 4rem;
+        }
 
         &:hover {
           transform: translateY(-1rem);

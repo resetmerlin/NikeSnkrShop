@@ -1,10 +1,18 @@
 .productScreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
   &__top {
     position: absolute;
     width: 90%;
-    height: 8%;
-    top: 0;
+    height: 12rem;
+    top: -19px;
+
+    display: flex;
     left: 0;
+    align-items: start;
+    justify-content: start;
+    text-align: center;
     span {
       position: absolute;
       font-size: 6rem;
@@ -73,6 +81,7 @@
           height: 14rem;
           background-size: contain;
           border: 3px solid black;
+          background-position: center;
           background-repeat: no-repeat;
         }
       }
@@ -88,13 +97,48 @@
       width: 50%;
       position: absolute;
       right: 0;
+
+      @include respond(tab-land-wide) {
+        height: 68%;
+        width: 47%;
+        position: absolute;
+        right: 0;
+        top: 13%;
+      }
+
+      @include respond(tab-land) {
+        height: 56%;
+        width: 51%;
+        position: absolute;
+        right: 4%;
+        top: 24%;
+      }
+
+      @include respond(tab-port) {
+        height: 40%;
+        width: 52%;
+        position: absolute;
+        right: 4%;
+        top: 32%;
+      }
     }
     &__side-top {
       position: absolute;
       width: 62%;
       height: auto;
       top: 3%;
-      left: 0;
+      left: 12px;
+
+      @include respond(tab-land-wide) {
+        top: 10%;
+      }
+      @include respond(tab-land) {
+        top: 10%;
+      }
+
+      @include respond(tab-port) {
+        top: 10%;
+      }
     }
 
     &__side-down {
@@ -107,6 +151,17 @@
       left: 0;
       display: flex;
       flex-direction: column;
+
+      @include respond(tab-land-wide) {
+        font-size: 1.5rem;
+      }
+
+      @include respond(tab-land) {
+        font-size: 1.5rem;
+      }
+      @include respond(tab-port) {
+        font-size: 1.5rem;
+      }
       span {
         font-family: "Lato", sans-serif;
         font-weight: 600;
@@ -118,23 +173,34 @@
   }
   &__product-name {
     font-family: "Archivo Black", sans-serif;
-    font-size: 12rem;
+    font-size: 9rem;
     line-height: 0.8;
     margin-top: 5rem;
     display: block;
     text-transform: uppercase;
+    @include respond(tab-land-wide) {
+      font-size: 7rem;
+    }
+
+    @include respond(tab-land) {
+      font-size: 7rem;
+    }
+
+    @include respond(tab-port) {
+      font-size: 7rem;
+    }
   }
   &__product-price {
     display: block;
-    margin-top: 4.5rem;
-    font-size: 6rem;
+    margin-top: 1.5rem;
+    font-size: 5rem;
   }
   &__down {
     position: absolute;
     width: 90%;
     height: 18%;
-    top: 82%;
     display: flex;
+    bottom: 2px;
 
     &__Link {
       font-size: 2.4rem;
@@ -180,7 +246,7 @@
     }
   }
   &__right {
-    position: absolute;
+    position: fixed;
     width: 10%;
     height: 100%;
     top: 0;
@@ -188,64 +254,110 @@
     flex-direction: column;
     right: 0;
     border-left: 1px solid rgb(0, 0, 0);
+
+    @include respond(tab-land) {
+      width: 13%;
+    }
+
+    @include respond(tab-port) {
+      width: 13%;
+    }
     &__user {
-      position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 1000;
-      width: 28.8rem;
-      height: 20rem;
-      background-color: black;
+      width: 100%;
+      height: 15rem;
+      background-color: #000;
       justify-content: center;
       flex-direction: column;
       align-items: center;
       text-align: center;
       display: flex;
+      @include respond(tab-land-wide) {
+      }
       i {
         color: white;
         font-size: 8rem;
+        @include respond(tab-land-wide) {
+          font-size: 6rem;
+        }
+
+        @include respond(tab-land) {
+          font-size: 6rem;
+        }
+        @include respond(tab-port) {
+          font-size: 6rem;
+        }
       }
       span {
         color: white;
         font-size: 2rem;
+        @include respond(tab-land-wide) {
+          font-size: 1.5rem;
+        }
+
+        @include respond(tab-land) {
+          font-size: 1.5rem;
+        }
+
+        @include respond(tab-port) {
+          font-size: 1.5rem;
+        }
       }
     }
     &-image {
-      width: 16rem;
-      height: 12rem;
+      width: 15rem;
+      height: 10rem;
       background-size: cover;
       background-position: center;
+      @include respond(tab-land-wide) {
+        width: 13rem;
+      }
+
+      @include respond(tab-land) {
+        width: 13rem;
+      }
+
+      @include respond(tab-port) {
+        width: 13rem;
+      }
     }
     &__wrap {
-      position: absolute;
-      top: 18%;
-      left: 23%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 16rem;
-      height: 72rem;
+      width: 100%;
+      height: 90%;
+      justify-content: center;
+      @include respond(tab-land-wide) {
+      }
     }
 
     &__home {
-      position: absolute;
-      top: 80%;
-      left: 23%;
-      width: 16rem;
-      height: 16rem;
-      background-color: black;
+      width: 100%;
+      height: 18rem;
+      background-color: #000;
       display: flex;
-      text-align: center;
       justify-content: center;
       align-items: center;
+      text-align: center;
       cursor: pointer;
+      @include respond(tab-land-wide) {
+        top: 10%;
+      }
+
+      @include respond(tab-land) {
+        top: 10%;
+      }
+
+      @include respond(tab-port) {
+        top: 10%;
+      }
       i {
         display: flex;
         text-align: center;
         justify-content: center;
         align-items: center;
         font-size: 2.5rem;
-        color: white;
+        color: #fff;
       }
     }
   }

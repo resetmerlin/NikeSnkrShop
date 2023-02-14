@@ -24,7 +24,7 @@ const LoginForm = () => {
   }, [navigate, userInfo, redirect]);
 
   return (
-    <>
+    <div className="loginScreen__wrap">
       {error ? (
         <>
           <span className="loginScreen__left__title" style={{ color: "red" }}>
@@ -70,7 +70,7 @@ const LoginForm = () => {
       >
         New customer? Register now
       </Link>
-    </>
+    </div>
   );
 };
 

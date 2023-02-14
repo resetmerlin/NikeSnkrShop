@@ -21,7 +21,6 @@ const SnkrScreen = () => {
 
     dispatch(cyberProductsAction());
   }, [dispatch]);
-
   const cyberProductList = useSelector((state) => state.cyberProductLists);
 
   const { loading, error, cyberProducts } = cyberProductList;
@@ -85,30 +84,33 @@ const SnkrScreen = () => {
   }
 
   return (
-    <>
-      <h1 className="main__title">Lastst Products</h1>
+    <div className="SnkrsScreen">
+      <div className="SnkrsScreen__upper__wrap">
+        <h1 className="SnkrsScreen__wrap__title">Lastst Products</h1>
+        <div className="SnkrsScreen__category__wrap">
+          <SideCategory
+            colors={colorPlainDoubleArray}
+            onColorCheckboxChange={handleColorChange}
+          ></SideCategory>
+          <form className="Category-sort-box">
+            <select
+              value={categorySort}
+              className="Category-sort-box__list"
+              onChange={(e) => setCategorySort(e.target.value)}
+            >
+              {categorySortOptions.map((value) => {
+                return (
+                  <option value={value} key={value}>
+                    {value}
+                  </option>
+                );
+              })}
+            </select>
+          </form>
+        </div>
+      </div>
 
-      <form className="Category-sort-box">
-        <select
-          value={categorySort}
-          className="Category-sort-box__list"
-          onChange={(e) => setCategorySort(e.target.value)}
-        >
-          {categorySortOptions.map((value) => {
-            return (
-              <option value={value} key={value}>
-                {value}
-              </option>
-            );
-          })}
-        </select>
-      </form>
-
-      <SideCategory
-        colors={colorPlainDoubleArray}
-        onColorCheckboxChange={handleColorChange}
-      ></SideCategory>
-      <div className="main__wrap">
+      <div className="SnkrsScreen__wrap">
         {loading ? (
           <div className="row">
             <Loading />
@@ -163,7 +165,7 @@ const SnkrScreen = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

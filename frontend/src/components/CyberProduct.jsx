@@ -23,9 +23,7 @@ const CyberProduct = ({ cyberProduct }) => {
         <Rating value={cyberProduct.rating} reviews={cyberProduct.numReviews} />
         <div className="cyberCard__text">
           <Link to={`/product/${cyberProduct._id}`}>
-            <div className="cyberCard__title" style={{ fontSize: `2.6rem` }}>
-              ${cyberProduct.price}
-            </div>
+            <div className="cyberCard__title">${cyberProduct.price}</div>
           </Link>
         </div>
       </div>

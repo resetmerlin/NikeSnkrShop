@@ -116,120 +116,121 @@ const ProfileScreen = () => {
   return (
     <div className="profileScreen__wrap">
       <span className="profileScreen__title">Profile</span>
+      <div className="profileScreen__wrap__up">
+        <div className="profileScreen__wrap__left">
+          <span className="profileScreen__side-title">User Info:</span>
+          <form onSubmit={changeProfileHandler}>
+            <div className="profileScreen__form">
+              <label htmlFor="email">Enter Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="profileScreen__form">
+              <label htmlFor="userName">Enter name</label>
+              <input
+                type="text"
+                name="userName"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="profileScreen__form">
+              <label htmlFor="password">Enter password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="profileScreen__form">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={confirmPassword}
+                placeholder="Confirm password"
+                onChange={(e) => setconfirmPassword(e.target.value)}
+              />
+            </div>
 
-      <div className="profileScreen__wrap__left">
-        <span className="profileScreen__side-title">User Info:</span>
-        <form onSubmit={changeProfileHandler}>
-          <div className="profileScreen__form">
-            <label htmlFor="email">Enter Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="profileScreen__form">
-            <label htmlFor="userName">Enter name</label>
-            <input
-              type="text"
-              name="userName"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="profileScreen__form">
-            <label htmlFor="password">Enter password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="profileScreen__form">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={confirmPassword}
-              placeholder="Confirm password"
-              onChange={(e) => setconfirmPassword(e.target.value)}
-            />
-          </div>
+            <button type="submit" className="profileScreen__button">
+              Update
+            </button>
+          </form>
+        </div>
 
-          <button type="submit" className="profileScreen__button">
-            Update
-          </button>
-        </form>
-      </div>
+        <div className="profileScreen__wrap__right">
+          <span className="profileScreen__side-title">User address:</span>
+          <form onSubmit={addressSaveHandler}>
+            <button
+              onClick={addressHandle}
+              className="profileScreen__button--find"
+            >
+              Find address
+            </button>
+            <div className="profileScreen__form">
+              <label htmlFor="PostalCode">Postal code</label>
 
-      <div className="profileScreen__wrap__right">
-        <span className="profileScreen__side-title">User address:</span>
-        <form onSubmit={addressSaveHandler}>
-          <button
-            onClick={addressHandle}
-            className="profileScreen__button--find"
-          >
-            Find address
-          </button>
-          <div className="profileScreen__form">
-            <label htmlFor="PostalCode">Postal code</label>
+              <input
+                type="text"
+                name="PostalCode"
+                placeholder="우편번호"
+                value={postalCode}
+                required
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+            </div>
 
-            <input
-              type="text"
-              name="PostalCode"
-              placeholder="우편번호"
-              value={postalCode}
-              required
-              onChange={(e) => setPostalCode(e.target.value)}
-            />
-          </div>
+            <div className="profileScreen__form">
+              <label htmlFor="address">address</label>
 
-          <div className="profileScreen__form">
-            <label htmlFor="address">address</label>
+              <input
+                type="text"
+                name="address"
+                placeholder="주소"
+                value={address}
+                required
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div className="profileScreen__form">
+              <label htmlFor="specificAddress">Specific Aaddress</label>
 
-            <input
-              type="text"
-              name="address"
-              placeholder="주소"
-              value={address}
-              required
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
-          <div className="profileScreen__form">
-            <label htmlFor="specificAddress">Specific Aaddress</label>
+              <input
+                type="text"
+                id="sample6_detailAddress"
+                name="specificAddress"
+                placeholder="상세주소"
+                required
+                value={specificAddress}
+                onChange={(e) => setSpecificAddress(e.target.value)}
+              />
+            </div>
+            <div className="profileScreen__form">
+              <label htmlFor="reference">Reference item</label>
 
-            <input
-              type="text"
-              id="sample6_detailAddress"
-              name="specificAddress"
-              placeholder="상세주소"
-              required
-              value={specificAddress}
-              onChange={(e) => setSpecificAddress(e.target.value)}
-            />
-          </div>
-          <div className="profileScreen__form">
-            <label htmlFor="reference">Reference item</label>
-
-            <input
-              type="text"
-              name="reference"
-              placeholder="참고항목"
-              value={referenceItem}
-              onChange={(e) => setReferenceItem(e.target.value)}
-              required
-            />
-          </div>
-          <button className="profileScreen__button" type="submit">
-            Update Address
-          </button>
-        </form>
+              <input
+                type="text"
+                name="reference"
+                placeholder="참고항목"
+                value={referenceItem}
+                onChange={(e) => setReferenceItem(e.target.value)}
+                required
+              />
+            </div>
+            <button className="profileScreen__button" type="submit">
+              Update Address
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

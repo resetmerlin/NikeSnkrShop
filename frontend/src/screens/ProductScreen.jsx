@@ -29,7 +29,11 @@ const ProductScreen = () => {
   const { userInfo } = userLogin;
 
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?qty=${qty}`);
+    if (cyberProduct.countInStock == 0) {
+      alert("Out of Stock");
+    } else {
+      navigate(`/cart/${id}?qty=${qty}`);
+    }
   };
   const nextProductHandler = () => {
     for (let nike = 0; nike < cyberProducts.length; nike++) {
@@ -39,7 +43,7 @@ const ProductScreen = () => {
     }
   };
   return (
-    <>
+    <div className="productScreen">
       <div className="productScreen__top">
         <Link to="/snkrs">
           <i className="bx bx-arrow-back"></i>
@@ -87,7 +91,7 @@ const ProductScreen = () => {
                   </select>
                 </form>
               ) : (
-                <h1>Wait for new stock</h1>
+                " Wait for new stock"
               )}
             </span>
           </div>
@@ -128,32 +132,46 @@ const ProductScreen = () => {
             );
           })}
         </div>
-        <button onClick={nextProductHandler}>
-          <div className="productScreen__right__home">
-            <i className="bx bxs-down-arrow"></i>
-          </div>
+        <button
+          onClick={nextProductHandler}
+          className="productScreen__right__home"
+        >
+          <i className="bx bxs-down-arrow"></i>
         </button>
       </div>
       <div className="productScreen__down">
-        <button
-          className="productScreen__down__cart"
-          type="button"
-          onClick={addToCartHandler}
-        >
-          {cyberProduct.countInStock == 0 ? (
-            " Out of Stock"
-          ) : (
-            <Link className="productScreen__down__Link" to="/cart">
-              Order now
-            </Link>
-          )}
-        </button>
+        {cyberProduct.countInStock > 0 ? (
+          <button
+            className="productScreen__down__cart"
+            type="button"
+            onClick={addToCartHandler}
+          >
+            {cyberProduct.countInStock == 0 ? (
+              " Out of Stock"
+            ) : (
+              <Link className="productScreen__down__Link" to="/cart">
+                Order now
+              </Link>
+            )}
+          </button>
+        ) : (
+          <button className="productScreen__down__cart" type="button">
+            {cyberProduct.countInStock == 0 ? (
+              " Out of Stock"
+            ) : (
+              <Link className="productScreen__down__Link" to="/cart">
+                Order now
+              </Link>
+            )}
+          </button>
+        )}
+
         <span className="productScreen__down__fav">
           {" "}
           <div>FAVORITE</div>
         </span>
       </div>
-    </>
+    </div>
   );
 };
 

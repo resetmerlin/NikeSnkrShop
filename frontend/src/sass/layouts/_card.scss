@@ -1,21 +1,17 @@
 .Card {
-  width: 42rem;
-  height: 19rem;
-  background-color: white;
+  width: 27rem;
+  height: 15rem;
+  background-color: #fff;
   border-radius: 26px;
   margin-right: 7rem;
-  display: flex;
   z-index: 10;
-  top: 20%;
-  left: 20%;
   display: flex;
   text-transform: uppercase;
-  position: relative;
-  font-family: "Oswald", sans-serif;
+  font-family: Oswald, sans-serif;
   flex-wrap: wrap;
   cursor: pointer;
-
-  box-shadow: 1px 1px 30px 0.3px rgb(177 176 176 / 57%);
+  transition: all 0.2s ease;
+  box-shadow: 1px 1px 30px 0.3px #b1b0b091;
   @include respond(tab-port) {
     font-size: 23%;
   }
@@ -23,56 +19,52 @@
     transform: scale(1.05);
   }
   a {
-    color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #000;
   }
   &__wrap {
-    position: absolute;
-    top: 0;
-    left: 40%;
     padding: 3rem;
     display: flex;
     flex-direction: column;
     font-size: 4rem;
-    width: 50%;
-    height: 100%;
+    width: 14rem;
+    justify-content: center;
+    font-size: 1.5rem;
   }
   &__name {
-    font-size: 2rem;
     font-weight: 700;
     margin: 1rem 0;
   }
   &__price {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 1rem 0;
   }
   &__rate {
     display: flex;
-    font-size: 2rem;
   }
   .bx-plus {
-    position: absolute;
-    top: 74%;
-    right: -6%;
   }
 }
+.Card__image__wrap {
+  height: 100%;
+  width: 9rem;
+  overflow: visible;
+}
 .Card__image {
-  position: absolute;
-  top: -25%;
-  left: -25%;
+  height: 23rem;
+  width: 19rem;
+  margin: -4rem -8rem;
 
-  z-index: 100;
-  height: 30rem;
-  width: 25rem;
   transform: rotate(0.9turn);
 }
 
-.shadow {
-  position: absolute;
-  top: 40%;
-  left: 5%;
-  border-radius: 50%;
-  box-shadow: 60px 4px 70px 1px #5c5c5c;
-  width: 7rem;
-  height: 7rem;
-}
+// .shadow {
+//   border-radius: 50%;
+//   box-shadow: 60px 4px 70px 1px #5c5c5c;
+//   width: 7rem;
+//   height: 7rem;
+// }

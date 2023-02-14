@@ -38,7 +38,7 @@ const RegisterForm = () => {
     }
   }, [navigate, userInfo, redirect]);
   return (
-    <>
+    <div className="loginScreen__wrap">
       {error && error.length > 30 ? (
         <>
           <span className="loginScreen__left__title">
@@ -60,7 +60,10 @@ const RegisterForm = () => {
         </>
       )}
 
-      <form className="loginScreen__form" onSubmit={submitRegisterHandler}>
+      <form
+        className="loginScreen__form register"
+        onSubmit={submitRegisterHandler}
+      >
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -97,11 +100,11 @@ const RegisterForm = () => {
 
       <Link
         to={redirect ? `/users/login?redirect=${redirect}` : "/users/login"}
-        className="loginScreen__left__register"
+        className="loginScreen__left__register register__ask"
       >
         You have an account? Sign in right now
       </Link>
-    </>
+    </div>
   );
 };
 

@@ -63,53 +63,79 @@ const OrderScreen = () => {
           <div className="orderScreen__info__small-wrap">
             <span className="orderScreen__info__title">User Information</span>
             <div className="orderScreen__info__default-wrap">
-              <span className="orderScreen__info__side-info">Email</span>
-              <span className="orderScreen__info__main-info">
-                {order.email}
-              </span>
-              <span className="orderScreen__info__side-info">Name</span>
-              <span className="orderScreen__info__main-info">{order.name}</span>
-              <span className="orderScreen__info__side-info">Order Id</span>
-              <span className="orderScreen__info__main-info">{order._id}</span>
+              <div className="orderScreen__info__default-content">
+                <span className="orderScreen__info__side-info">Email</span>
+                <span className="orderScreen__info__main-info">
+                  {order.email}
+                </span>
+              </div>
+
+              <div className="orderScreen__info__default-content">
+                <span className="orderScreen__info__side-info">Name</span>
+                <span className="orderScreen__info__main-info">
+                  {order.name}
+                </span>
+              </div>
+
+              <div className="orderScreen__info__default-content">
+                <span className="orderScreen__info__side-info">Order Id</span>
+                <span className="orderScreen__info__main-info">
+                  {order._id}
+                </span>
+              </div>
             </div>
           </div>
 
           <div className="orderScreen__info__small-wrap">
             <span className="orderScreen__info__title">User address</span>
-            <div className="orderScreen__info__default-wrap">
-              <span className="orderScreen__info__side-info">Postal code</span>
-              <span className="orderScreen__info__main-info">
-                {order.shippingAddress.postalCode}
-              </span>
-              <span className="orderScreen__info__side-info">Address</span>
-              <span className="orderScreen__info__main-info">
-                {order.shippingAddress.address}
-              </span>
-              <span className="orderScreen__info__side-info">
-                Specific Address
-              </span>
-              <span className="orderScreen__info__main-info">
-                {order.shippingAddress.specificAddress}
-              </span>
 
-              <span className="orderScreen__info__side-info">
-                Reference Item
-              </span>
-              <span className="orderScreen__info__main-info">
-                {order.shippingAddress.referenceItem}
-              </span>
+            <div className="orderScreen__info__default-wrap">
+              <div className="orderScreen__info__default-content">
+                <span className="orderScreen__info__side-info">
+                  Postal code
+                </span>
+                <span className="orderScreen__info__main-info">
+                  {order.shippingAddress.postalCode}
+                </span>
+              </div>
+
+              <div className="orderScreen__info__default-content">
+                <span className="orderScreen__info__side-info">Address</span>
+                <span className="orderScreen__info__main-info">
+                  {order.shippingAddress.address}
+                </span>
+              </div>
+              <div className="orderScreen__info__default-content">
+                <span className="orderScreen__info__side-info">
+                  Specific Address
+                </span>
+                <span className="orderScreen__info__main-info">
+                  {order.shippingAddress.specificAddress}
+                </span>
+              </div>
+              <div className="orderScreen__info__default-content">
+                <span className="orderScreen__info__side-info">
+                  Reference Item
+                </span>
+                <span className="orderScreen__info__main-info">
+                  {order.shippingAddress.referenceItem}
+                </span>
+              </div>
             </div>
           </div>
 
           <div className="orderScreen__info__small-wrap">
             <span className="orderScreen__info__title">Payment method</span>
+
             <div className="orderScreen__info__default-wrap">
-              <span className="orderScreen__info__side-info">
-                Payment method
-              </span>
-              <span className="orderScreen__info__main-info">
-                {order.paymentMethod}
-              </span>
+              <div className="orderScreen__info__default-content">
+                <span className="orderScreen__info__side-info">
+                  Payment method
+                </span>
+                <span className="orderScreen__info__main-info">
+                  {order.paymentMethod}
+                </span>
+              </div>
             </div>
           </div>
 

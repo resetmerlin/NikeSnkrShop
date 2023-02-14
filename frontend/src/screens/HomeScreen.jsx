@@ -25,40 +25,42 @@ const HomeScreen = () => {
       <div className="HomeScreen__background">
         <span className="HomeScreen__background__logo">NIKE</span>
       </div>
-      <div className="HomeScreen__left">
-        <span className="HomeScreen__left__big-text">JUST</span>
-        <span className="HomeScreen__left__big-text">DO</span>
-        <span className="HomeScreen__left__big-text">IT</span>
+      <div className="HomeScreen__wrap">
+        <div className="HomeScreen__left">
+          <span className="HomeScreen__left__big-text">JUST</span>
+          <span className="HomeScreen__left__big-text">DO</span>
+          <span className="HomeScreen__left__big-text">IT</span>
 
-        <span className="HomeScreen__left__small-text">
-          You will experience outstanding
-        </span>
-        <span className="HomeScreen__left__small-text">
-          Nike Resell shop ever{" "}
-        </span>
-        <span className="HomeScreen__left__small-text">seen before.</span>
-      </div>
-      <div className="HomeScreen__center">
-        <Canvas
-          colormangement="true"
-          shadowmap="true "
-          camera={{ position: [-5, 4, 4], fov: 50 }}
-        >
-          <Suspense fallback={null}>
-            <Lights />
-            <NikeHome />
-            <Floor />
-          </Suspense>
-          <OrbitControls />
-        </Canvas>
-      </div>
-      <div className="HomeScreen__right">
-        <span className="HomeScreen__right__product-name">NIKE ZOOM AIR</span>
-        <span className="HomeScreen__right__product-price">$260</span>
+          <span className="HomeScreen__left__small-text">
+            You will experience outstanding
+          </span>
+          <span className="HomeScreen__left__small-text">
+            Nike Resell shop ever{" "}
+          </span>
+          <span className="HomeScreen__left__small-text">seen before.</span>
+        </div>
+        <div className="HomeScreen__center">
+          <Canvas
+            colormangement="true"
+            shadowmap="true "
+            camera={{ position: [-5, 4, 4], fov: 50 }}
+          >
+            <Suspense fallback={null}>
+              <Lights />
+              <NikeHome />
+              <Floor />
+            </Suspense>
+            <OrbitControls />
+          </Canvas>
+        </div>
+        <div className="HomeScreen__right">
+          <span className="HomeScreen__right__product-name">NIKE ZOOM AIR</span>
+          <span className="HomeScreen__right__product-price">$260</span>
 
-        <span className="HomeScreen__right__product-description">
-          GET IT NOW
-        </span>
+          <span className="HomeScreen__right__product-description">
+            GET IT NOW
+          </span>
+        </div>
       </div>
       <div className="HomeScreen__down">
         {CardList.map((item) => {

@@ -7,6 +7,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginHeader, setLoginHeader] = useState("");
+  const [checkbox, setCheckbox] = useState("");
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -21,6 +22,9 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logoutAction());
     navigate("/");
+  };
+  const checkboxHandler = (e) => {
+    setCheckbox(e.target.checked);
   };
   return (
     <header className="header" style={{ display: `${loginHeader}` }}>
@@ -46,6 +50,7 @@ const Header = () => {
           type="checkbox"
           className="navigation__checkbox"
           id="navi-toggle"
+          onChange={checkboxHandler}
         />
 
         {userInfo ? (
@@ -54,11 +59,14 @@ const Header = () => {
               <span id="header__userName">{userInfo.name}</span>
               <i className="bx bxs-down-arrow"></i>
             </label>
-
-            <nav className="nav">
-              <Link to="/profile">profile</Link>
-              <button onClick={logoutHandler}>Logout</button>
-            </nav>
+            {checkbox ? (
+              <nav className="nav">
+                <Link to="/profile">profile</Link>
+                <button onClick={logoutHandler}>Logout</button>
+              </nav>
+            ) : (
+              ""
+            )}
           </>
         ) : (
           <Link to="/users/login" className="a__login">
