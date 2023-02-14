@@ -35,7 +35,7 @@ const Three = ({ model }) => {
           ) : model == 6 ? (
             <NikeDunkLow open={open} setOpen={setOpen} />
           ) : (
-            <h1>3d error load</h1>
+            <span>3d error load</span>
           )}
 
           <Floor />
