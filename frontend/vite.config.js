@@ -5,8 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   server: {
     proxy: {
-      "/api":
-        "https://api.render.com/deploy/srv-cfld7k9gp3ju5h3hpu80?key=FX5EkWWe__Q:5050",
+      "/api": "https://nike-snkrs-shop.onrender.com:5050",
     },
   },
   plugins: [react()],
