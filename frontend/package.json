@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "build": "vite build",
+    "build": "npx vite build",
     "preview": "vite preview",
     "compile:sass": "node-sass src/sass/index.scss src/css/style.css -w"
   },
