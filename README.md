@@ -1,4 +1,4 @@
-# Nike Snkrs Shop!
+# Nike Snkrs Shop!(Kr)
 [![wakatime](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/44a63003-60b6-42e5-b7a2-4ea90a10511c.svg)](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/44a63003-60b6-42e5-b7a2-4ea90a10511c)
 [![wakatime](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/4f3d39e1-cc09-4bea-92a7-7b51e044af58.svg)](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/4f3d39e1-cc09-4bea-92a7-7b51e044af58)
 [![wakatime](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/2d727b0a-493e-4f25-aadf-daf624562a26.svg)](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/2d727b0a-493e-4f25-aadf-daf624562a26)
@@ -62,4 +62,71 @@ proxy: {
       "/api": "https://www.com:port",
     },
 ```
+___
+
+# Nike Snkrs Shop!(En)
+[![wakatime](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/44a63003-60b6-42e5-b7a2-4ea90a10511c.svg)](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/44a63003-60b6-42e5-b7a2-4ea90a10511c)
+[![wakatime](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/4f3d39e1-cc09-4bea-92a7-7b51e044af58.svg)](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/4f3d39e1-cc09-4bea-92a7-7b51e044af58)
+[![wakatime](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/2d727b0a-493e-4f25-aadf-daf624562a26.svg)](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/2d727b0a-493e-4f25-aadf-daf624562a26)
+[![wakatime](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/36b94519-b476-480d-a80a-da2914cec61c.svg)](https://wakatime.com/badge/user/60e4818e-19d5-478c-9922-4c7fe3366bc4/project/36b94519-b476-480d-a80a-da2914cec61c)
+### Introduction
+- I used React, React Redux, Express, Node.js, Mongo DB to make this project(MERN stack). 
+- This is a website that enables user to see nike snkrs via 3d rather than image(Do not put real email address or your private information while using this website).
+- I develop this project after I clone code a eCommerce from https://www.udemy.com/course/mern-ecommerce/
+- [This is a meme while I make this project(written in kr language)](https://docs.google.com/document/d/1rZa-SA2ecmGbWXiZf4TfwvGbeesP03Klyp6bi7PkX1I/edit?usp=sharing)
+
+
+## How to install and run the project?
+
+
+```
+ git clone https://github.com/resetmerlin/NikeSnkrShop.git
+```
+### Run only Frontend
+
+```
+ cd frontend
+```
+```
+ npm install
+```
+
+```
+ npm start
+ 
+```
+
+### Run Whole Application
+
+1. You need to create an env file on / directory
+
+2. The key and value that you need
+ - JWT_SECRET
+ - MONGO_URI
+ - NODE_ENV(production or development)
+ - PAYPAL_CLIENT_ID
+ - PORT
+
+```
+ npm run build
+ 
+```
+
+```
+ npm run dev
+
+```
+
+
+```
+ cd frontend 
+
+```
+3. You need to change your proxy /api url into your server url from vite.config.js
+```js
+proxy: {
+      "/api": "https://www.com:port",
+    },
+```
+
 
