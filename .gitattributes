@@ -7,6 +7,7 @@ frontend/public/yellow_nike_dunk_low_dusty_olive_from_video_clip.glb filter=lfs 
 frontend/public/nike_air_jordans_1_retro_mid_fog_canvas_scan.glb filter=lfs diff=lfs merge=lfs -text
 frontend/public/nike_air_max_skor.glb filter=lfs diff=lfs merge=lfs -text
 frontend/public/nike_dunks_game_ready__2k_pbr.glb filter=lfs diff=lfs merge=lfs -text
+
 #dependencies
 node_modules
 # Msic
