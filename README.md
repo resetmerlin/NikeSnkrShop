@@ -10,14 +10,11 @@
 - [당시 공부하면서 메모한 글](https://docs.google.com/document/d/1rZa-SA2ecmGbWXiZf4TfwvGbeesP03Klyp6bi7PkX1I/edit?usp=sharing)
 
 
-
-[Nike Snkrs Shop tutorial](https://github.com/resetmerlin/NikeSnkrShop/files/11420994/NikeSnkrsShoptutorial_PDF_2023-05-08120449.442101.pdf)
-
+## Click me
+https://scribehow.com/shared/Nike_Snkrs_Shop_tutorial__zFlCmjtzRjGBainXZA0gZQ
 
 
 ## How to install and run the project?
-
-
 ```
  git clone https://github.com/resetmerlin/NikeSnkrShop.git
 ```
